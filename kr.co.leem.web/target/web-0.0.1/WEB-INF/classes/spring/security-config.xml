@@ -22,7 +22,7 @@
 		<intercept-url pattern="/ws/**" access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll"/>
 		
-		<form-login login-page="/login" username-parameter="id" password-parameter="password"/>
+		<form-login login-page="/login" username-parameter="accountId" password-parameter="password"/>
 		
 		<logout logout-url="/logout" invalidate-session="true" success-handler-ref="logoutSuccessHandler" />
 	</http>

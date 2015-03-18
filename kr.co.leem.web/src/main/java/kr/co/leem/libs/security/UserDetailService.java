@@ -1,7 +1,7 @@
 package kr.co.leem.libs.security;
 
-import kr.co.leem.domains.User;
-import kr.co.leem.repositories.jpa.UserRepository;
+import kr.co.leem.domains.account.Account;
+import kr.co.leem.repositories.jpa.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,14 +18,14 @@ import java.util.Collection;
 @Service
 public class UserDetailService implements org.springframework.security.core.userdetails.UserDetailsService {
 	@Autowired private PasswordEncoder passwordEncoder;
-	@Autowired private UserRepository userRepository;
+	@Autowired private AccountRepository accountRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByAccount(username);
+		Account account = accountRepository.findByAccountId(username);
 		
-		String id = user.getAccount();
-		String pwd = user.getPassword();
+		String id = account.getAccountId();
+		String pwd = account.getPassword();
 		
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		

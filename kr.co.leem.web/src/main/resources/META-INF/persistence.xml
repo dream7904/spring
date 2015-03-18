@@ -6,6 +6,9 @@ http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistenc
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<persistence-unit name="DefaultGenesis">
 		<!-- primary -->
-		<class>kr.co.leem.domains.User</class>
+		<class>kr.co.leem.domains.account.Account</class>
+		<class>kr.co.leem.domains.menu.TopMenuGrp</class>
+		<class>kr.co.leem.domains.menu.MidMenuGrp</class>
+		<class>kr.co.leem.domains.menu.LowMenu</class>
 	</persistence-unit>
 </persistence>

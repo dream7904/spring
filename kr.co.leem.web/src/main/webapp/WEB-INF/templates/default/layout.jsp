@@ -58,7 +58,19 @@
 	<script type="text/javascript" src="${contextPath}/resources/lib/bootgrid/jquery.bootgrid.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/lib/jquery/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/lib/atmosphere/jquery.atmosphere.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/js/utils.js"></script>
+
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/stringUtils.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/arrayUtils.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/chartUtils.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/dateFormat.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/datepickerUtils.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/gridUtils.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/htmlUtils.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/objectUtils.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/utils/dateUtils.js"></script>
+
+	<script type="text/javascript" src="${contextPath}/resources/js/views/mng/config/account.js"></script>
+
 
 
 	<script type="text/javascript">

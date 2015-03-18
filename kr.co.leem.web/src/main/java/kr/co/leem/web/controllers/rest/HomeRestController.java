@@ -2,7 +2,8 @@ package kr.co.leem.web.controllers.rest;
 
 import kr.co.leem.constants.ResultType;
 import kr.co.leem.constants.ResultValue;
-import kr.co.leem.domains.User;
+import kr.co.leem.domains.account.Account;
+import kr.co.leem.web.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,18 +24,30 @@ import java.util.Map;
  * Created by Administrator on 2015-03-13.
  */
 @RestController
-@RequestMapping(value = "home/rest")
+@RequestMapping(value = "rest/home")
 public class HomeRestController {
 	@Autowired
 	@Qualifier("authenticationManager") private AuthenticationManager authenticationManager;
 	@Autowired private SecurityContextRepository securityContextRepository;
+	@Autowired private AccountService accountService;
+
+	@RequestMapping(value = "setDefaultAccount")
+	public Map<String, Object> setDefault() throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		accountService.setDefaultAccount(resultMap);
+
+		resultMap.put(ResultType.resultCode.toString(), ResultValue.success.toString());
+
+		return resultMap;
+	}
 
 	@RequestMapping(value = "login")
-	public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response, User user) throws Exception {
+	public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response, Account account) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		try {
-			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getAccount(), user.getPassword());
+			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(account.getAccountId(), account.getPassword());
 			Authentication auth = authenticationManager.authenticate(token);
 
 			SecurityContextHolder.getContext().setAuthentication(auth);
@@ -50,7 +63,7 @@ public class HomeRestController {
 	}
 
 	@RequestMapping(value = "logout")
-	public Map<String, Object> logout(HttpSession session, User user) {
+	public Map<String, Object> logout(HttpSession session, Account account) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		try {

@@ -1,19 +1,18 @@
-package kr.co.leem.domains;
-
-import org.joda.time.DateTime;
+package kr.co.leem.domains.account;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2015-03-02.
  */
-@Entity(name = "User")
-@Table(name = "USER")
-public class User {
+@Entity(name = "Account")
+@Table(name = "ACCOUNT")
+public class Account {
 	private long id;
-	private String account;
+	private String accountId;
 	private String password;
-	private String accountName;
+	private String name;
 	private String telNum;
 	private String hpNum;
 	private String postNum;
@@ -21,9 +20,9 @@ public class User {
 	private String addrDetail;
 	private String config;
 	private String regId;
-	private DateTime regDate;
+	private Date regDate;
 	private String updId;
-	private DateTime updDate;
+	private Date updDate;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,13 +36,13 @@ public class User {
 	}
 
 	@Basic
-	@Column(name = "account", length = 32)
-	public String getAccount() {
-		return account;
+	@Column(name = "accountId", length = 32, unique = true)
+	public String getAccountId() {
+		return accountId;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 
 	@Basic
@@ -57,13 +56,13 @@ public class User {
 	}
 
 	@Basic
-	@Column(name = "accountName", length = 32)
-	public String getAccountName() {
-		return accountName;
+	@Column(name = "name", length = 32)
+	public String getName() {
+		return name;
 	}
 
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Basic
@@ -136,12 +135,13 @@ public class User {
 		this.regId = regId;
 	}
 
-	@Column(name = "regDate")
-	public DateTime getRegDate() {
+	@Basic
+	@Column(name = "regDate", length = 20)
+	public Date getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(DateTime regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 
@@ -156,12 +156,12 @@ public class User {
 	}
 
 	@Basic
-	@Column(name = "updDate")
-	public DateTime getUpdDate() {
+	@Column(name = "updDate", length = 20)
+	public Date getUpdDate() {
 		return updDate;
 	}
 
-	public void setUpdDate(DateTime updDate) {
+	public void setUpdDate(Date updDate) {
 		this.updDate = updDate;
 	}
 }

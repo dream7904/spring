@@ -37,11 +37,22 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-		<script type="text/javascript" src="${contextPath}/resources/lib/jquery/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/lib/jquery/jquery.js"></script>
 		<script type="text/javascript" src="${contextPath}/resources/lib/jquery/jquery.form.js"></script>
 		<script type="text/javascript" src="${contextPath}/resources/lib/jquery/jquery.timer.js"></script>
 		<script type="text/javascript" src="${contextPath}/resources/lib/jquery/jquery.blockUI.js"></script>
-		<script type="text/javascript" src="${contextPath}/resources/js/utils.js"></script>
+
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/stringUtils.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/arrayUtils.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/chartUtils.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/dateFormat.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/datepickerUtils.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/gridUtils.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/htmlUtils.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/objectUtils.js"></script>
+		<script type="text/javascript" src="${contextPath}/resources/js/utils/dateUtils.js"></script>
+
+		<script type="text/javascript" src="${contextPath}/resources/js/views/login.js"></script>
 	</head>
 
 	<body>
@@ -57,7 +68,7 @@
 						<form  id="loginFrm" name="loginFrm" role="form">
 							<fieldset>
 								<div class="form-group">
-									<input type="text" id="account" name="account" class="form-control" placeholder="E-mail" autofocus>
+									<input type="text" id="accountId" name="accountId" class="form-control" placeholder="E-mail" autofocus>
 								</div>
 								<div class="form-group">
 									<input type="password" id="password" name="password" class="form-control" placeholder="Password" value="">
@@ -110,52 +121,9 @@
 				$.unblockUI();
 			});
 
-			var rest = {
-				doLogin : function () {
-					$("#loginFrm").ajaxSubmit({
-						url : '${contextPath}/rest/login',
-						type : 'post',
-						beforeSubmit : function (arr, $form, options) {
-							if (stringUtils.isEmpty($('#id').val())) {
-								alert('ID를 입력해 주세요.');
-								return false;
-							}
-
-							if (stringUtils.isEmpty($('#password').val())) {
-								alert('비밀번호를 입력해 주세요.');
-								return false;
-							}
-						},
-						success : function (datas) {
-							console.log(datas)
-							if (datas.resultCode == 'success') {
-
-								location.href = '${contextPath}/mng/config/user'
-
-							} else {
-								alert('아이디 또는 패스워드가 일치하지 않습니다.');
-								return;
-							}
-						}
-					});
-				}
-			};
-
-			$('#id').keypress(function (e) {
-				if (e.which == 13)  {
-					rest.doLogin();
-				}
-			});
-
-			$('#password').keypress(function (e) {
-				if (e.which == 13)  {
-					rest.doLogin();
-				}
-			});
-
-			$('#btnLogin').click(function () {
-				rest.doLogin();
-			});
+			loginRest.contextPath = '${contextPath}';
+			loginRest.setEvents();
+			loginRest.setDefault();
 		});
 	</script>
 	</body>

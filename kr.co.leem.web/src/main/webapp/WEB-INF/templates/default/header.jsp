@@ -301,37 +301,37 @@
 					<li>
 						<a href="${contextPath}/${topMenuGrps.url}">
 							<c:if test="${empty topMenuGrps.iconNm == false}">
-							<i class="fa fa-${topMenuGrps.iconNm} fa-fw"></i>
+								<i class="fa fa-${topMenuGrps.iconNm} fa-fw"></i>
 							</c:if>
 							${topMenuGrps.name}<span class="fa arrow"></span></a>
-						<c:choose>
-							<c:when test="${topMenuGrps.midMenuGrp != null && fn:length(topMenuGrps.midMenuGrp) > 0}">
-								<ul class="nav nav-second-level">
-									<c:forEach var="midMenuGrp" items="${topMenuGrps.midMenuGrp}" varStatus="j">
-									<li>
-										<a href="${contextPath}/${midMenuGrp.url}">${midMenuGrp.name}<span class="fa arrow"></span></a>
-										<c:choose>
-											<c:when test="${midMenuGrp.lowMenu != null && fn:length(midMenuGrp.lowMenu) > 0}">
-												<ul class="nav nav-third-level">
-													<c:forEach var="lowMenu" items="${midMenuGrp.lowMenu}" varStatus="k">
-														<li>
-															<a href="${contextPath}/${lowMenu.url}">${lowMenu.name}</a>
-														</li>
-													</c:forEach>
-												</ul>
-											</c:when>
-											<c:otherwise>
+							<c:choose>
+								<c:when test="${topMenuGrps.midMenuGrp != null && fn:length(topMenuGrps.midMenuGrp) > 0}">
+									<ul class="nav nav-second-level">
+										<c:forEach var="midMenuGrp" items="${topMenuGrps.midMenuGrp}" varStatus="j">
+										<li>
+											<a href="${contextPath}/${midMenuGrp.url}">${midMenuGrp.name}<span class="fa arrow"></span></a>
+											<c:choose>
+												<c:when test="${midMenuGrp.lowMenu != null && fn:length(midMenuGrp.lowMenu) > 0}">
+													<ul class="nav nav-third-level">
+														<c:forEach var="lowMenu" items="${midMenuGrp.lowMenu}" varStatus="k">
+															<li>
+																<a href="${contextPath}/${lowMenu.url}">${lowMenu.name}</a>
+															</li>
+														</c:forEach>
+													</ul>
+												</c:when>
+												<c:otherwise>
 
-											</c:otherwise>
-										</c:choose>
-									</li>
-									</c:forEach>
-								</ul>
-							</c:when>
-							<c:otherwise>
+												</c:otherwise>
+											</c:choose>
+										</li>
+										</c:forEach>
+									</ul>
+								</c:when>
+								<c:otherwise>
 
-							</c:otherwise>
-						</c:choose>
+								</c:otherwise>
+							</c:choose>
 						<!-- /.nav-second-level -->
 					</li>
 				</c:forEach>

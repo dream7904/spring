@@ -4,17 +4,9 @@ public enum ResultType {
 	rows,
 	compareRows,
 	row,
-	modules,
-	exception,
-	resultCode,
 	total,
-	page,
+	current,
 	record,
-	isAuth,
-	modelNumbers,
-	serialNumbers,
-	types,
-	sites,
-	cntTotalBats,
-	cntTotalAlarms
+	resultCode,
+	exception
 }

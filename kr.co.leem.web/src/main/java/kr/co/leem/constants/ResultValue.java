@@ -4,5 +4,6 @@ public enum ResultValue {
 	success,
 	fail,
 	empty,
-	requireAuth
+	requireAuth,
+	isSystemAdministrator
 }
