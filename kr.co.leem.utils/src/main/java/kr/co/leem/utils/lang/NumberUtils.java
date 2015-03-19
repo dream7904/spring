@@ -367,7 +367,7 @@ public class NumberUtils {
 	 * NumberUtil.integer2string(14) = '14'
 	 * </pre>
 	 *
-	 * @param integer 정수 값.
+	 * @param intValue 정수 값.
 	 * @return 정수형 값을 문자열 값으로 변환한 값.
 	 */
 	public static String integerTostring(int intValue) {
@@ -381,7 +381,7 @@ public class NumberUtils {
 	 * @return 문자열이 숫자형태인 경우 true.
 	 */
 	public static boolean isNumber(String str) {
-		if (str == null || str == "")
+		if (StringUtils.isEmpty(str))
 			return false;
 		
 		if (str.matches("^[-+]?\\d+(\\.\\d+)?$")) {

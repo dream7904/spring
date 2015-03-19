@@ -15,7 +15,7 @@ public class CookieUtils {
 		Cookie cookie = null;
 		Cookie [] cookies = request.getCookies();
 	
-		if (cookies !=null ) {
+		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
 				if (cookies[i].getName().equals(cookieName)) {
 					cookie = cookies[i];
@@ -32,13 +32,13 @@ public class CookieUtils {
 	 * @param cookie
 	 */
 	public static void addCookie(HttpServletRequest request,HttpServletResponse response,Cookie cookie) {
-		addCookie(request,response, cookie, "/cap", 60*60*24*14);
+		addCookie(request,response, cookie, "/cap", 60 * 60 * 24 * 14);
 	}
 	public static void addCookie(HttpServletRequest request,HttpServletResponse response,Cookie cookie, String path, int maxAge) {
 		if (cookie != null) {
-			cookie.setPath(path);	//
+			cookie.setPath(path);
 			cookie.setMaxAge(maxAge);
-			cookie.setDomain(request.getLocalAddr()); //
+			cookie.setDomain(request.getLocalAddr());
 			response.addCookie(cookie);
 		}
 	}
@@ -52,8 +52,8 @@ public class CookieUtils {
 		removeCookie(response, cookie, "/cap");
 	}
 	public static void removeCookie(HttpServletResponse response,Cookie cookie,String path) {
-		if (cookie!=null) {
-			cookie = new Cookie(cookie.getName(),""); //내용이 빈쿠키로 만든다.
+		if (cookie != null) {
+			cookie = new Cookie(cookie.getName(), ""); //내용이 빈쿠키로 만든다.
 			cookie.setPath(path);
 			cookie.setMaxAge(-1);
 			response.addCookie(cookie);

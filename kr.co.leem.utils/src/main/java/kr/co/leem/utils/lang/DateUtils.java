@@ -68,12 +68,12 @@ public class DateUtils {
 	/**
 	 * 평년인 경우, 매 월 일자 수 
 	 */
-	private static final int[] lastDayOfMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
+	private static final int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
 	/**
 	 * 윤년인 경우, 매 월 일자 수
 	 */
-	private static int[] lastDayOfMonthForLeapYear = {31,29,31,30,31,30,31,31,30,31,30,31};
+	private static int[] lastDayOfMonthForLeapYear = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
 	/**
 	 * 현재 날짜를 반환. (yyyy-MM-dd HH:mm:ss)
@@ -93,6 +93,7 @@ public class DateUtils {
 	public static String getCurrentDateTimeString(String pattern) {
 		DateTime dt = new DateTime();
 		DateTimeFormatter fmt = DateTimeFormat.forPattern(pattern);
+
 		return fmt.print(dt);
 	}
 	
@@ -131,7 +132,7 @@ public class DateUtils {
 	 *
 	 * @param str 날짜(yyyy-MM-dd)
 	 * @param abbreviation 축약형 여부.
-	 * @param Locale locale
+	 * @param locale
 	 * @return 입력된 날짜에 대한 요일.
 	 */
 	public static String getDayOfWeek(String str, Boolean abbreviation, Locale locale) {
@@ -214,6 +215,7 @@ public class DateUtils {
 	 */
 	public static boolean equals(Date date1, String date2, String date2pattern) {
 		Date date = string2Date(date2, date2pattern);
+
 		return equals(date1, date);
 	}
 	
@@ -228,6 +230,7 @@ public class DateUtils {
 		if (date1.getTime() == date2.getTime()) {
 			return true;
 		}
+
 		return false;
 	}
 	
@@ -252,6 +255,7 @@ public class DateUtils {
 	 */
 	public static boolean greaterThan(Date date1, String date2, String date2pattern) {
 		Date date = string2Date(date2, date2pattern);
+
 		return greaterThan(date1, date);
 	}
 	
@@ -266,6 +270,7 @@ public class DateUtils {
 		if (date1.getTime() > date2.getTime()) {
 			return true;
 		}
+
 		return false;
 	}
 	
@@ -280,6 +285,7 @@ public class DateUtils {
 		if (timestamp1.getTime() > timestamp2.getTime()) {
 			return true;
 		}
+
 		return false;
 	}
 	
@@ -304,6 +310,7 @@ public class DateUtils {
 	 */
 	public static boolean greaterThan(Timestamp timestamp1, String timestamp2, String timestamp2pattern) {
 		Timestamp date = string2Timestamp(timestamp2, timestamp2pattern);
+
 		return greaterThan(timestamp1, date);
 	}
 	
@@ -316,29 +323,37 @@ public class DateUtils {
 	 */
 	public static String getEndDate(String startDay, int intervalDays) {
 		StringTokenizer st = new StringTokenizer(startDay, "-");
+
 		int year = 0;
 		int mon = 0;
 		int day = 0;
+
 		for (int i = 0; st.hasMoreTokens(); i++) {
 			if (i == 0) {
 				year = Integer.parseInt(st.nextToken());
 			}
+
 			if (i == 1) {
 				String sMon = st.nextToken();
+
 				if (sMon.startsWith("0")) {
 					sMon = sMon.substring(1);
 				}
 				
 				mon = Integer.parseInt(sMon);
 			}
+
 			if (i == 2) {
 				String sDay = st.nextToken();
+
 				if (sDay.startsWith("0")) {
 					sDay = sDay.substring(1);
 				}
+
 				day = Integer.parseInt(sDay);
 			}
 		}
+
 		DateTime start = new DateTime(year, mon, day, 0, 0, 0, 0);
 		
 		Period p1 = new Period(20 * 86400000);
@@ -535,7 +550,7 @@ public class DateUtils {
 		DateTime dt = new DateTime();
 		dt = fmt.parseDateTime(str);
 		
-		if (!fmt.print(dt).equals(str)) {
+		if (fmt.print(dt).equals(str) == false) {
 			return false;
 		}
 		
@@ -546,7 +561,6 @@ public class DateUtils {
 	 * 입력된 값이 시간 형식인지 체크.
 	 *
 	 * @param str 시간값. (HH:mm)
-	 * @param pattern 시간 패턴.
 	 * @return 시간패턴인 경우 true.
 	 */
 	public static boolean isTime(String str) {
@@ -565,7 +579,7 @@ public class DateUtils {
 		DateTime dt = new DateTime();
 		dt = fmt.parseDateTime(str);
 		
-		if (!fmt.print(dt).equals(str)) {
+		if (fmt.print(dt).equals(str) == false) {
 			return false;
 		}
 		
@@ -597,7 +611,7 @@ public class DateUtils {
 	/**
 	 * 날짜값을 문자열로 변환.
 	 *
-	 * @param Date 날짜값.
+	 * @param date 날짜값.
 	 * @return 변환된 날짜. (yyyy-MM-dd)
 	 */
 	public static String date2String(Date date) {
@@ -650,7 +664,7 @@ public class DateUtils {
 		String pattern = "(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:29|30))|(?:(?:0[13578]|1[02])-31))";
 		String date = "";
 		
-		while (!ValidationUtils.isRegexPatternMatch(date, pattern)) {
+		while (ValidationUtils.isRegexPatternMatch(date, pattern) == false) {
 			String yyyy = StringUtils.leftPad(String.valueOf(generator.nextInt(200) + 1900), 4, '0');
 			String mm = StringUtils.leftPad(String.valueOf(generator.nextInt(12)), 2, '0');
 			String dd = StringUtils.leftPad(String.valueOf(generator.nextInt(30)), 2, '0');
@@ -683,6 +697,7 @@ public class DateUtils {
 	 */
 	public static java.sql.Date string2SQLDate(String str, String pattern) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern(pattern);
+
 		return new java.sql.Date(fmt.parseDateTime(str).getMillis());
 	}
 	
@@ -705,6 +720,7 @@ public class DateUtils {
 	 */
 	public static Timestamp string2Timestamp(String str, String pattern) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern(pattern);
+
 		return new Timestamp(fmt.parseDateTime(str).getMillis());
 	}
 	
@@ -729,6 +745,7 @@ public class DateUtils {
 		if (date == null) {
 			return "";
 		}
+
 		return date2String(date, pattern);
 	}
 	
@@ -823,6 +840,7 @@ public class DateUtils {
 		Calendar cal = getCalendar();
 		cal.roll(Calendar.DATE, -1);
 		Date date = cal.getTime();
+
 		return date2String(date, pattern);
 	}
 	
@@ -865,7 +883,7 @@ public class DateUtils {
 		cal.setTime(string2Date(startDay, pattern));
 		String nextDay = date2String(cal.getTime(), pattern);
 		
-		while (!nextDay.equals(endDay)) {
+		while (nextDay.equals(endDay) == false) {
 			cal.add(Calendar.DATE, 1);
 			nextDay = date2String(cal.getTime(), pattern);
 			result.add(nextDay);
@@ -891,6 +909,7 @@ public class DateUtils {
 	 */
 	public static String getCurrentDateString(String pattern) {
 		SimpleDateFormat df = new SimpleDateFormat(pattern);
+
 		return df.format(new Date());
 	}
 	
@@ -973,7 +992,7 @@ public class DateUtils {
 	 */
 	public static Date getDate(int year, int month, int day, int hourOfDay, int minute, int second){
 		Calendar cal = Calendar.getInstance();
-		cal.set(year, month-1, day, hourOfDay, minute, second);
+		cal.set(year, month - 1, day, hourOfDay, minute, second);
 		
 		return cal.getTime();
 	}
@@ -1019,8 +1038,10 @@ public class DateUtils {
 	private static int getLastDayOfMonthInt(String inputDate){
 		Assert.notNull(inputDate);
 		Assert.isTrue(isDate(inputDate), inputDate  + " must be in 'yyyy-MM-dd' pattern");
+
 		int month = Integer.parseInt(inputDate.substring(5, 7));
 		int lastDayOfMonthValue = 0;
+
 		if(isLeapYear(inputDate)){
 			lastDayOfMonthValue = lastDayOfMonthForLeapYear[month-1];
 		} else{
@@ -1051,6 +1072,7 @@ public class DateUtils {
 	 */
 	public static boolean isLeapYear(int year){
 		Assert.isTrue(year > 0, year + " 반드시 정수형이어야 합니다.");
-		return (( year%4==0 && year%100!=0 ) || year%400==0 ) ? true : false;
+
+		return (( year % 4 == 0 && year % 100 != 0 ) || year % 400 == 0 ) ? true : false;
 	}
 }

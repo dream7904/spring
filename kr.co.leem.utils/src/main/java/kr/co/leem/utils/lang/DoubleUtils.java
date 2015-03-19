@@ -7,7 +7,7 @@ public class DoubleUtils {
 	}
 	
 	public static boolean isNotEmpty(Double doubleValue) throws Exception {
-		return !DoubleUtils.isEmpty(doubleValue);
+		return DoubleUtils.isEmpty(doubleValue) == false;
 	}
 	
 	public static Double defaultIfEmpty(Double doubleValue, Double defaultDoubleValue) throws Exception {

@@ -31,12 +31,14 @@ public class DigestUtils {
 	 */
 	public static String encodeCharset(String str, String charsetName) {
 		String result = "";
+
 		try {
 			result = new String(str.getBytes(charsetName));
 		} catch (UnsupportedEncodingException e) {
 			logger.error("Exception: {}", new Object[] { e });
 			throw new RuntimeException("UnsupportedEncodingException : " + e.getMessage(), e);
 		}
+
 		return result;
 	}
 	

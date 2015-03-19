@@ -14,10 +14,10 @@ public class HttpUtils {
 	 * @return
 	 */
 	public static String getParamStr(HttpServletRequest request) {
-		
 		StringBuffer sb = new StringBuffer();
 		
 		Enumeration<String> parameterNames = request.getParameterNames();
+
 		for (int i=0; parameterNames.hasMoreElements(); i++) {
 			String id = parameterNames.nextElement();
 			String value = request.getParameter(id);

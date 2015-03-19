@@ -24,7 +24,7 @@ public class ValidationUtils {
 	 */
 	public static boolean isResiRegNum(String regno) {
 		String pattern = "^([0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12][0-9]|3[01]))-([1|2|3|4][0-9]{6})$";
-		if (!isRegexPatternMatch(regno, pattern)) {
+		if (isRegexPatternMatch(regno, pattern) == false) {
 			return false;
 		}
 		String replaceno = regno.replace("-", "");
@@ -54,7 +54,7 @@ public class ValidationUtils {
 	public static boolean isCorpCertNum(String corpNumber) {
 		String pattern = "^((\\d{6})-(\\d{7}))$";
 		
-		if (!isRegexPatternMatch(corpNumber, pattern)) {
+		if (isRegexPatternMatch(corpNumber, pattern) == false) {
 			return false;
 		}
 		String replaceno = corpNumber.replace("-", "");
@@ -74,7 +74,7 @@ public class ValidationUtils {
 	/**
 	 * 사업자등록번호 유효성 결과를 반환.
 	 *
-	 * @param corpNumber 사업자등록번호.
+	 * @param bizNumber 사업자등록번호.
 	 * @return 유효한 사업자등록번호인 경우에만 true.
 	 */
 	public static boolean isBizRegNum(String bizNumber) {
@@ -108,7 +108,7 @@ public class ValidationUtils {
 	 */
 	public static boolean isTelNum(String telNum) {
 		String pattern = "^\\d{2,4}-\\d{3,4}-\\d{4}$";
-		if (!isRegexPatternMatch(telNum, pattern))
+		if (isRegexPatternMatch(telNum, pattern) == false)
 			return false;
 		else
 			return true;
@@ -123,7 +123,7 @@ public class ValidationUtils {
 	public static boolean isCellphoneNumber(String cellPhoneNumber) {
 		String pattern = "^(01(0|1|6|7|8|9))-\\d{3,4}-\\d{4}$";
 		
-		if (!isRegexPatternMatch(cellPhoneNumber, pattern)) 
+		if (isRegexPatternMatch(cellPhoneNumber, pattern) == false)
 			return false;
 		else
 			return true;
@@ -138,7 +138,7 @@ public class ValidationUtils {
 	public static boolean isEmailAddr(String email) {
 		String pattern = "([\\w-\\.]+)@((?:[\\w]+\\.)+)([a-zA-Z]{2,4})$";
 		
-		if (!isRegexPatternMatch(email, pattern))
+		if (isRegexPatternMatch(email, pattern) == false)
 			return false;
 		else
 			return true;
@@ -152,7 +152,7 @@ public class ValidationUtils {
 	 */
 	public static boolean isCardNumber(String cardNumber) {
 		String pattern = "^\\d{4}[\\s\\-]?\\d{4}[\\s\\-]?\\d{4}[\\s\\-]?\\d{4}$";
-		if (!isRegexPatternMatch(cardNumber, pattern))
+		if (isRegexPatternMatch(cardNumber, pattern) == false)
 			return false;
 		else
 			return true;
