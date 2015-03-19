@@ -7,7 +7,11 @@ var topMenuGrpRest = {
 		var gridParams = {
 			url : topMenuGrpRest.contextPath + "/rest/menu/getTopMenuGrps",
 			gridId : '#topMenuGrpGrid',
-			formatters : {moveMidMenuGrpPage : gridColFormatter.moveMidMenuGrpPage, regDateYmd : gridColFormatter.regDateYmd, enabled : gridColFormatter.enabled},
+			formatters : {
+				moveMidMenuGrpPage : gridColFormatter.moveMidMenuGrpPage,
+				regDateYmd : gridColFormatter.regDateYmd,
+				enabled : gridColFormatter.enabled
+			},
 			selectedRowFunction : function (e, rows) {
 				if (rows[0] != null) {
 					var topMenuGrpData = rows[0];
@@ -21,7 +25,7 @@ var topMenuGrpRest = {
 				}
 			},
 			resetFormFunction : function (e, rows) {
-				formUtils.reset('userFrm');
+				formUtils.reset('topMenuGrpFrm');
 			},
 			delRowFunction : function () {
 				$(this).find(".command-delete").on("click", function (e) {
@@ -41,7 +45,7 @@ var topMenuGrpRest = {
 
 			},
 			success : function (datas) {
-				if (datas.resultCode == 'success') {
+				if (datas['resultCode'] == 'success') {
 					topMenuGrpRest.showTopMenuGrpGrid();
 					//formUtils.reset('topMenuGrpFrm');
 				} else {
@@ -87,4 +91,4 @@ var topMenuGrpRest = {
 			topMenuGrpRest.saveTopMenuGrp();
 		});
 	}
-}
+};

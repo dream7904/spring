@@ -7,7 +7,10 @@ var accountRest = {
 		var gridParams = {
 			url : accountRest.contextPath + "/rest/account/getAccounts",
 			gridId : '#usersGrid',
-			formatters : {commands : gridColFormatter.commands, regDate : gridColFormatter.regDate, name : gridColFormatter.name},
+			formatters : {
+				commands : gridColFormatter.commands,
+				regDate : gridColFormatter.regDateYmd
+			},
 			selectedRowFunction : function (e, rows) {
 				if (rows[0] != null) {
 					var userData = rows[0];
@@ -48,7 +51,7 @@ var accountRest = {
 
 			},
 			success : function (datas) {
-				if (datas.resultCode == 'success') {
+				if (datas['resultCode'] == 'success') {
 					location.href = accountRest.contextPath + '/main/index'
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
@@ -91,4 +94,4 @@ var accountRest = {
 			accountRest.saveUser();
 		});
 	}
-}
+};

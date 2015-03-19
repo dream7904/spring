@@ -11,10 +11,15 @@ var midMenuGrpRest = {
 			post : {
 				topMenuGrpSeq : midMenuGrpRest.topMenuGrpSeq
 			},
-			formatters : {moveMidMenuGrpPage : gridColFormatter.moveMidMenuGrpPage, regDateYmd : gridColFormatter.regDateYmd, enabled : gridColFormatter.enabled},
+			formatters : {
+				moveMidMenuGrpPage : gridColFormatter.moveMidMenuGrpPage,
+				regDateYmd : gridColFormatter.regDateYmd,
+				enabled : gridColFormatter.enabled
+			},
 			selectedRowFunction : function (e, rows) {
 				if (rows[0] != null) {
 					var midMenuGrpData = rows[0];
+
 					$('#txtName').val(midMenuGrpData['name']);
 					$('#txtDescription').val(midMenuGrpData['description']);
 					$('#txtUrl').val(midMenuGrpData['url']);
@@ -25,7 +30,7 @@ var midMenuGrpRest = {
 				}
 			},
 			resetFormFunction : function (e, rows) {
-				formUtils.reset('userFrm');
+				formUtils.reset('midMenuGrpFrm');
 			},
 			delRowFunction : function () {
 				$(this).find(".command-delete").on("click", function (e) {
@@ -44,13 +49,14 @@ var midMenuGrpRest = {
 
 			},
 			success : function (datas) {
-				if (datas.resultCode == 'success') {
+				if (datas['resultCode'] == 'success') {
 					midMenuGrpRest.showMidMenuGrpGrid();
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
 					return;
 				}
-				gridUtils.deselectGrid('#midMenuGrpGrid')
+
+				gridUtils.deselectGrid('#midMenuGrpGrid');
 				formUtils.reset('midMenuGrpFrm');
 			}
 		});
@@ -88,4 +94,4 @@ var midMenuGrpRest = {
 			midMenuGrpRest.saveMidMenuGrp();
 		});
 	}
-}
+};
