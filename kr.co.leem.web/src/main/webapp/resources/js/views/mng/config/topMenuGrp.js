@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2015-02-03.
  */
-var accountRest = {
+var topMenuGrpRest = {
 	contextPath : null,
-	topMenuGrpRest: function () {
+	showTopMenuGrpGrid: function () {
 		var gridParams = {
-			url : accountRest.contextPath + "/rest/account/getAccounts",
+			url : topMenuGrpRest.contextPath + "/rest/menu/getTopMenuGrps",
 			gridId : '#usersGrid',
 			formatters : {commands : gridColFormatter.commands, regDate : gridColFormatter.regDate, name : gridColFormatter.name},
 			selectedRowFunction : function (e, rows) {
@@ -33,7 +33,7 @@ var accountRest = {
 					if (confirm("데이터를 삭제하시겠습니까?")) {
 						var accountId = $(this).attr("data-accountId");
 
-						accountRest.delAccount(accountId);
+						topMenuGrpRest.delAccount(accountId);
 					}
 				}).end();
 			}
@@ -49,7 +49,7 @@ var accountRest = {
 			},
 			success : function (datas) {
 				if (datas.resultCode == 'success') {
-					location.href = accountRest.contextPath + '/main/index'
+					location.href = topMenuGrpRest.contextPath + '/main/index'
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
 					return;
@@ -88,7 +88,7 @@ var accountRest = {
 		});
 
 		$('#btnSave').click(function () {
-			accountRest.saveUser();
+			topMenuGrpRest.saveUser();
 		});
 	}
 }

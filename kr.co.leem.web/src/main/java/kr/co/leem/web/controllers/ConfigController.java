@@ -15,4 +15,9 @@ public class ConfigController {
 	public String users() throws Exception {
 		return "mng/config/user";
 	}
+
+	@RequestMapping(value = "topMenuGrp")
+	public String topMenuGrp() throws Exception {
+		return "mng/config/topMenuGrp";
+	}
 }

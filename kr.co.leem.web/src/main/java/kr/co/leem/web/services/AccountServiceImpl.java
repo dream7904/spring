@@ -23,7 +23,7 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
-	public void getAccounts(AccountReq accountReq, Map<String, Object> resultMap) throws Exception {
+	public void getAccounts(AccountReq accountReq, Map<ResultType, Object> resultMap) throws Exception {
 		Pageable pageable = PagingHelper.createPageRequest(accountReq);
 		Page<Account> page = null;
 		String searchPhrase = accountReq.getSearchPhrase();
@@ -35,34 +35,32 @@ public class AccountServiceImpl implements AccountService {
 		}
 
 		if (page != null) {
-			resultMap.put(ResultType.total.toString(), page.getTotalElements()); // 총 페이지수
-			resultMap.put(ResultType.current.toString(), accountReq.getCurrent());	// 현재 페이지
-			resultMap.put(ResultType.record.toString(), accountReq.getRowCount()); // 총 레코드 수
-			resultMap.put(ResultType.rows.toString(), page.getContent());
+			resultMap.put(ResultType.total, page.getTotalElements()); // 총 페이지수
+			resultMap.put(ResultType.current, accountReq.getCurrent());	// 현재 페이지
+			resultMap.put(ResultType.record, accountReq.getRowCount()); // 총 레코드 수
+			resultMap.put(ResultType.rows, page.getContent());
 		}
-
-		
 	}
 
 	@Override
-	public void getAccount(AccountReq accountReq, Map<String, Object> resultMap) throws Exception {
-		resultMap.put(ResultType.row.toString(), accountRepository.findByAccountId(accountReq.getAccountId()));
+	public void getAccount(AccountReq accountReq, Map<ResultType, Object> resultMap) throws Exception {
+		resultMap.put(ResultType.row, accountRepository.findByAccountId(accountReq.getAccountId()));
 	}
 
 	@Override
-	public void saveAccount(Account account, Map<String, Object> resultMap) throws Exception {
+	public void saveAccount(Account account, Map<ResultType, Object> resultMap) throws Exception {
 		Account saveAccount = accountRepository.save(account);
 
-		resultMap.put(ResultType.row.toString(), saveAccount);
+		resultMap.put(ResultType.row, saveAccount);
 	}
 
 	@Override
-	public void delAccount(AccountReq accountReq, Map<String, Object> resultMap) throws Exception {
+	public void delAccount(AccountReq accountReq, Map<ResultType, Object> resultMap) throws Exception {
 		accountRepository.deleteByAccountId(accountReq.getAccountId());
 	}
 
 	@Override
-	public void setDefaultAccount(Map<String, Object> resultMap) throws Exception {
+	public void setDefaultAccount(Map<ResultType, Object> resultMap) throws Exception {
 		long cntUsers = accountRepository.count();
 
 		if (cntUsers < 1) {

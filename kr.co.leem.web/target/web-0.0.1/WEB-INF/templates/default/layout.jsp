@@ -70,7 +70,7 @@
 	<script type="text/javascript" src="${contextPath}/resources/js/utils/dateUtils.js"></script>
 
 	<script type="text/javascript" src="${contextPath}/resources/js/views/mng/config/account.js"></script>
-
+	<script type="text/javascript" src="${contextPath}/resources/js/views/mng/config/topMenuGrp.js"></script>
 
 
 	<script type="text/javascript">

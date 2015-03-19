@@ -32,12 +32,12 @@ public class HomeRestController {
 	@Autowired private AccountService accountService;
 
 	@RequestMapping(value = "setDefaultAccount")
-	public Map<String, Object> setDefault() throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+	public Map<ResultType, Object> setDefault() throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
 
 		accountService.setDefaultAccount(resultMap);
 
-		resultMap.put(ResultType.resultCode.toString(), ResultValue.success.toString());
+		resultMap.put(ResultType.resultCode, ResultValue.success);
 
 		return resultMap;
 	}
@@ -48,6 +48,7 @@ public class HomeRestController {
 
 		try {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(account.getAccountId(), account.getPassword());
+
 			Authentication auth = authenticationManager.authenticate(token);
 
 			SecurityContextHolder.getContext().setAuthentication(auth);

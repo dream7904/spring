@@ -29,27 +29,27 @@
 						<table id="usersGrid" class="table table-condensed table-hover table-striped">
 							<thead>
 							<tr>
-								<th data-column-id="accountId" data-identifier="true" data-align="center" data-header-align="center"
-								    data-sortable="false">계정
+								<th data-column-id="topMenuGrpSeq" data-identifier="true" data-align="center" data-header-align="center"
+								    data-sortable="false">Seq
 								</th>
 								<th data-column-id="name" data-align="center" data-header-align="center"
 								    data-sortable="false">이름
 								</th>
 
-								<th data-column-id="telNum" data-align="center" data-header-align="center"
-								    data-sortable="false">전화번호
+								<th data-column-id="description" data-align="center" data-header-align="center"
+								    data-sortable="false">내용
 								</th>
 
-								<th data-column-id="hpNum" data-align="center" data-header-align="center"
-								    data-sortable="false">핸드폰번호
+								<th data-column-id="url" data-align="center" data-header-align="center"
+								    data-sortable="false">URL
 								</th>
 
-								<th data-column-id="address" data-align="center" data-header-align="center"
-								    data-sortable="false">주소
+								<th data-column-id="ord" data-align="center" data-header-align="center"
+								    data-sortable="false">순서
 								</th>
 
 								<th data-column-id="regDate" data-formatter="date" data-align="center" data-header-align="center"
-								    data-sortable="false">주소
+								    data-sortable="false">등록일
 								</th>
 								<%--<th data-column-id="userGrpNm" data-align="center" data-formatter="userGrpNm" data-header-align="center"
 								    data-sortable="false">권한
@@ -78,7 +78,7 @@
 				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<form role="form" id="userFrm" name="userFrm" method="post">
+					<form role="form" id="topMenuGrpFrm" name="topMenuGrpFrm" method="post">
 						<div class="form-group">
 							<label for="txtAccountId">아이디</label>
 							<input type="text" class="form-control" id="txtAccountId" name="accountId" placeholder="아이디를 입력해 주세요.">
@@ -131,8 +131,8 @@
 <!-- /container -->
 <script type="text/javascript">
 	$(function () {
-		accountRest.contextPath = '${contextPath}';
-		accountRest.showAccountGrid();
-		accountRest.setEvents();
+		topMenuGrpRest.contextPath = '${contextPath}';
+		topMenuGrpRest.showTopMenuGrpGrid();
+		topMenuGrpRest.setEvents();
 	});
 </script>

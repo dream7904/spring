@@ -23,8 +23,8 @@ public class AccountRestController {
 	@Autowired private AccountService accountService;
 
 	@RequestMapping(value = "getAccounts")
-	public Map<String, Object> getAccounts(AccountReq accountReq) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+	public Map<ResultType, Object> getAccounts(AccountReq accountReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
 
 		accountService.getAccounts(accountReq, resultMap);
 
@@ -32,39 +32,39 @@ public class AccountRestController {
 	}
 
 	@RequestMapping(value = "getAccount")
-	public Map<String, Object> getAccount(@RequestBody AccountReq accountReq) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+	public Map<ResultType, Object> getAccount(@RequestBody AccountReq accountReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
 
 		accountService.getAccount(accountReq, resultMap);
 
-		resultMap.put(ResultType.resultCode.toString(), ResultValue.success.toString());
+		resultMap.put(ResultType.resultCode, ResultValue.success);
 
 		return resultMap;
 	}
 
 	@RequestMapping(value = "saveAccount")
-	 public Map<String, Object> saveAccount(Account account) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+	 public Map<ResultType, Object> saveAccount(Account account) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
 
 		accountService.saveAccount(account, resultMap);
 
-		resultMap.put(ResultType.resultCode.toString(), ResultValue.success.toString());
+		resultMap.put(ResultType.resultCode, ResultValue.success);
 
 		return resultMap;
 	}
 
 	@RequestMapping(value = "delAccount")
-	public Map<String, Object> delAccount(@RequestBody AccountReq accountReq) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+	public Map<ResultType, Object> delAccount(@RequestBody AccountReq accountReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
 
 		if (StringUtils.equalsIgnoreCase(accountReq.getAccountId(), "admin")) {
-			resultMap.put(ResultType.resultCode.toString(), ResultValue.isSystemAdministrator.toString());
+			resultMap.put(ResultType.resultCode, ResultValue.isSystemAdministrator);
 			return resultMap;
 		}
 
 		accountService.delAccount(accountReq, resultMap);
 
-		resultMap.put(ResultType.resultCode.toString(), ResultValue.success.toString());
+		resultMap.put(ResultType.resultCode, ResultValue.success);
 
 		return resultMap;
 	}
