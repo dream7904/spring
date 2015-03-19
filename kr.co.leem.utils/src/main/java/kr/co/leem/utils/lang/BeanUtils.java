@@ -10,6 +10,6 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
 	}
 	
 	public static boolean isNotEmpty(Object object) throws Exception {
-		return !isEmpty(object);
+		return isEmpty(object) == false;
 	}
 }
