@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2015-02-03.
  */
-var userRest = {
+var accountRest = {
 	contextPath : null,
 	showUserGrid: function () {
 		var gridParams = {
-			url : userRest.contextPath + "/rest/account/getAccounts",
+			url : accountRest.contextPath + "/rest/account/getAccounts",
 			gridId : '#usersGrid',
 			formatters : {commands : gridColFormatter.commands, regDate : gridColFormatter.regDate, name : gridColFormatter.name},
 			selectedRowFunction : function (e, rows) {
@@ -19,7 +19,9 @@ var userRest = {
 					$('#txtAddrDetail').val(userData['addrDetail']);
 					$('#txtTelNum').val(userData['telNum']);
 					$('#txtHpNum').val(userData['hpNum']);
-
+					$('#hdnRegDate').val(new Date(userData['regDate']));
+					console.log(userData);
+					console.log(userData['seq'])
 					$('#hdnSeq').val(userData['seq']);
 				}
 			},
@@ -31,7 +33,7 @@ var userRest = {
 					if (confirm("데이터를 삭제하시겠습니까?")) {
 						var accountId = $(this).attr("data-accountId");
 
-						userRest.delAccount(accountId);
+						accountRest.delAccount(accountId);
 					}
 				}).end();
 			}
@@ -47,7 +49,7 @@ var userRest = {
 			},
 			success : function (datas) {
 				if (datas.resultCode == 'success') {
-					location.href = loginRest.contextPath + '/main/index'
+					location.href = accountRest.contextPath + '/main/index'
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
 					return;
@@ -86,7 +88,7 @@ var userRest = {
 		});
 
 		$('#btnSave').click(function () {
-			userRest.saveUser();
+			accountRest.saveUser();
 		});
 	}
 }

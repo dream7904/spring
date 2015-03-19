@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity(name = "Account")
 @Table(name = "ACCOUNT")
 public class Account {
-	private long id;
+	private long seq;
 	private String accountId;
 	private String password;
 	private String name;
@@ -26,17 +26,17 @@ public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "seq", length = 32)
-	public long getId() {
-		return id;
+	@Column(name = "seq", length = 32, unique = true)
+	public long getSeq() {
+		return seq;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setSeq(long seq) {
+		this.seq = seq;
 	}
 
 	@Basic
-	@Column(name = "accountId", length = 32, unique = true)
+	@Column(name = "accountId", length = 32)
 	public String getAccountId() {
 		return accountId;
 	}

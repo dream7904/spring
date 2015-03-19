@@ -43,5 +43,4 @@ public class PageParams {
 	public void setSort(List<PageSort> value) {
 		this.sort = value;
 	}
-
 }

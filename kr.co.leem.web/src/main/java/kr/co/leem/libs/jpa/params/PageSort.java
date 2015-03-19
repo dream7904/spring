@@ -1,23 +1,22 @@
 package kr.co.leem.libs.jpa.params;
 
 public class PageSort {
-    protected PageSortDirectionType direction = PageSortDirectionType.ASC;
-    protected String property;
+	protected PageSortDirectionType direction = PageSortDirectionType.ASC;
+	protected String property;
 
-    public PageSortDirectionType getDirection() {
-        return direction;
-    }
+	public PageSortDirectionType getDirection() {
+		return direction;
+	}
 
-    public void setDirection(PageSortDirectionType value) {
-        this.direction = value;
-    }
+	public void setDirection(PageSortDirectionType value) {
+		this.direction = value;
+	}
 
-    public String getProperty() {
-        return property;
-    }
+	public String getProperty() {
+		return property;
+	}
 
-    public void setProperty(String value) {
-        this.property = value;
-    }
-
+	public void setProperty(String value) {
+		this.property = value;
+	}
 }

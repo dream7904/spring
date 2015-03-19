@@ -30,7 +30,7 @@
 							<thead>
 							<tr>
 								<th data-column-id="accountId" data-identifier="true" data-align="center" data-header-align="center"
-								    data-sortable="false">ID
+								    data-sortable="false">계정
 								</th>
 								<th data-column-id="name" data-align="center" data-header-align="center"
 								    data-sortable="false">이름
@@ -131,8 +131,8 @@
 <!-- /container -->
 <script type="text/javascript">
 	$(function () {
-		userRest.contextPath = '${contextPath}';
-		userRest.showUserGrid();
-		userRest.setEvents();
+		accountRest.contextPath = '${contextPath}';
+		accountRest.showUserGrid();
+		accountRest.setEvents();
 	});
 </script>
