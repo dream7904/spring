@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JsonExceptionResponse {
-    private String message;
+	private String message;
 
 	public String getMessage() {
 		return message;
@@ -20,12 +20,12 @@ public class JsonExceptionResponse {
 	}
 
 	public ModelAndView asModelAndView() {
-        MappingJackson2JsonView jsonView = new MappingJackson2JsonView();
-	    Map<String, String> exceptionMap = new HashMap<String, String>();
+		MappingJackson2JsonView jsonView = new MappingJackson2JsonView();
+		Map<String, String> exceptionMap = new HashMap<String, String>();
 
-	    exceptionMap.put(ResultType.resultCode.toString(), ResultValue.fail.toString());
-	    exceptionMap.put(ResultType.exception.toString(), message);
+		exceptionMap.put(ResultType.resultCode.toString(), ResultValue.fail.toString());
+		exceptionMap.put(ResultType.exception.toString(), message);
 
-        return new ModelAndView(jsonView, exceptionMap);
-    }
+		return new ModelAndView(jsonView, exceptionMap);
+	}
 }
