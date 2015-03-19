@@ -20,4 +20,9 @@ public class ConfigController {
 	public String topMenuGrp() throws Exception {
 		return "mng/config/topMenuGrp";
 	}
+
+	@RequestMapping(value = "midMenuGrp")
+	public String midMenuGrp() throws Exception {
+		return "mng/config/midMenuGrp";
+	}
 }

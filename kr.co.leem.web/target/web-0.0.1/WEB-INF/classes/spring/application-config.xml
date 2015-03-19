@@ -52,23 +52,6 @@
 		<property name="validationQuery" value="SELECT 1 FROM DUAL"></property>
 	</bean>
 
-	<!-- Mybatis-->
-
-	<!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
-		<property name="mapperLocations" value="classpath:sqls/*.xml"/>
-	</bean>
-
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="close">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean>
-
-	<bean id="batDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="kr.co.pmgrow.bas.repositories.mybatis.BatDAO"/>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>-->
-
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>

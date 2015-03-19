@@ -89,27 +89,27 @@
 						</div>
 						<div class="form-group">
 							<label for="txtName">이름</label>
-							<input type="text" class="form-control" id="txtName" name="name" placeholder="이름을 입력해 주세요."></select>
+							<input type="text" class="form-control" id="txtName" name="name" placeholder="이름을 입력해 주세요."/>
 						</div>
 						<div class="form-group">
 							<label for="txtPostNum">우편번호</label>
-							<input type="text" class="form-control" id="txtPostNum" name="postNum" placeholder="이름을 입력해 주세요."></select>
+							<input type="text" class="form-control" id="txtPostNum" name="postNum" placeholder="이름을 입력해 주세요."/>
 						</div>
 						<div class="form-group">
 							<label for="txtAddress">주소</label>
-							<input type="text" class="form-control" id="txtAddress" name="address"></select>
+							<input type="text" class="form-control" id="txtAddress" name="address"/>
 						</div>
 						<div class="form-group">
 							<label for="txtAddrDetail">주소상세</label>
-							<input type="text" class="form-control" id="txtAddrDetail" name="addrDetail"></select>
+							<input type="text" class="form-control" id="txtAddrDetail" name="addrDetail"/>
 						</div>
 						<div class="form-group">
 							<label for="txtTelNum">전화번호</label>
-							<input type="text" class="form-control" id="txtTelNum" name="telNum"></select>
+							<input type="text" class="form-control" id="txtTelNum" name="telNum"/>
 						</div>
 						<div class="form-group">
 							<label for="txtHpNum">핸드폰 번호</label>
-							<input type="text" class="form-control" id="txtHpNum" name="hpNum"></select>
+							<input type="text" class="form-control" id="txtHpNum" name="hpNum"/>
 						</div>
 
 						<input type="hidden" id="hdnRegDate" name="regDate" value="">

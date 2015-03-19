@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface TopMenuGrpRepository extends JpaRepository<TopMenuGrp, Long> {
 	Page<TopMenuGrp> findAllByOrderByOrdDesc(Pageable pageable) throws Exception;
-	Page<TopMenuGrp> findAllByNameOrDescriptionOrderByOrdDesc(Pageable pageable, String name, String description) throws Exception;
+	Page<TopMenuGrp> findAllByNameContainingOrDescriptionContainingOrderByOrdDesc(Pageable pageable, String name, String description) throws Exception;
 }

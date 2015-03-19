@@ -1,5 +1,6 @@
 package kr.co.leem.domains.menu;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
@@ -11,16 +12,17 @@ import java.util.List;
  */
 @Entity(name = "MidMenuGrp")
 @Table(name = "MID_MENU_GRP")
+@JsonIgnoreProperties(value = {"topMenuGrp"})
 public class MidMenuGrp {
-	private long midMenuGrpSeq;
-	private long tmgSeq;
+	private Long midMenuGrpSeq;
+	private Long tmgSeq;
 	private TopMenuGrp topMenuGrp;
 	private String name;
 	private String url;
 	private String description;
-	private boolean using;
+	private Boolean enabled;
 	private String iconNm;
-	private int ord;
+	private Integer ord;
 
 	private List<LowMenu> lowMenu;
 	private Date regDate;
@@ -31,21 +33,21 @@ public class MidMenuGrp {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "midMenuGrpSeq", length = 32)
-	public long getMidMenuGrpSeq() {
+	public Long getMidMenuGrpSeq() {
 		return midMenuGrpSeq;
 	}
 
-	public void setMidMenuGrpSeq(long midMenuGrpSeq) {
+	public void setMidMenuGrpSeq(Long midMenuGrpSeq) {
 		this.midMenuGrpSeq = midMenuGrpSeq;
 	}
 
 	@Basic
 	@Column(name = "tmgSeq", length = 32)
-	public long getTmgSeq() {
+	public Long getTmgSeq() {
 		return tmgSeq;
 	}
 
-	public void setTmgSeq(long tmgSeq) {
+	public void setTmgSeq(Long tmgSeq) {
 		this.tmgSeq = tmgSeq;
 	}
 
@@ -90,13 +92,13 @@ public class MidMenuGrp {
 	}
 
 	@Basic
-	@Column(name = "using")
-	public boolean isUsing() {
-		return using;
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setUsing(boolean using) {
-		this.using = using;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Basic
@@ -111,15 +113,15 @@ public class MidMenuGrp {
 
 	@Basic
 	@Column(name = "ord", length = 10)
-	public int getOrd() {
+	public Integer getOrd() {
 		return ord;
 	}
 
-	public void setOrd(int ord) {
+	public void setOrd(Integer ord) {
 		this.ord = ord;
 	}
 
-	@OneToMany(mappedBy = "midMenuGrp", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "midMenuGrp", fetch = FetchType.EAGER)
 	public List<LowMenu> getLowMenu() {
 		return lowMenu;
 	}

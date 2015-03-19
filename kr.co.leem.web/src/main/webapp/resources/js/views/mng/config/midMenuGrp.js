@@ -1,23 +1,27 @@
 /**
  * Created by Administrator on 2015-02-03.
  */
-var topMenuGrpRest = {
+var midMenuGrpRest = {
 	contextPath : null,
-	showTopMenuGrpGrid: function () {
+	topMenuGrpSeq : null,
+	showMidMenuGrpGrid: function () {
 		var gridParams = {
-			url : topMenuGrpRest.contextPath + "/rest/menu/getTopMenuGrps",
-			gridId : '#topMenuGrpGrid',
+			url : midMenuGrpRest.contextPath + "/rest/menu/getMidMenuGrps",
+			gridId : '#midMenuGrpGrid',
+			post : {
+				topMenuGrpSeq : midMenuGrpRest.topMenuGrpSeq
+			},
 			formatters : {moveMidMenuGrpPage : gridColFormatter.moveMidMenuGrpPage, regDateYmd : gridColFormatter.regDateYmd, enabled : gridColFormatter.enabled},
 			selectedRowFunction : function (e, rows) {
 				if (rows[0] != null) {
-					var topMenuGrpData = rows[0];
-					$('#txtName').val(topMenuGrpData['name']);
-					$('#txtDescription').val(topMenuGrpData['description']);
-					$('#txtUrl').val(topMenuGrpData['url']);
-					$('#txtOrd').val(topMenuGrpData['ord']);
-					$('#selEnabled').val('' + topMenuGrpData['enabled']);
-					$('#hdnRegDate').val(new Date(topMenuGrpData['regDate']));
-					$('#hdnTopMenuGrpSeq').val(topMenuGrpData['topMenuGrpSeq']);
+					var midMenuGrpData = rows[0];
+					$('#txtName').val(midMenuGrpData['name']);
+					$('#txtDescription').val(midMenuGrpData['description']);
+					$('#txtUrl').val(midMenuGrpData['url']);
+					$('#txtOrd').val(midMenuGrpData['ord']);
+					$('#selEnabled').val('' + midMenuGrpData['enabled']);
+					$('#hdnRegDate').val(new Date(midMenuGrpData['regDate']));
+					$('#hdnMidMenuGrpSeq').val(midMenuGrpData['midMenuGrpSeq']);
 				}
 			},
 			resetFormFunction : function (e, rows) {
@@ -26,37 +30,34 @@ var topMenuGrpRest = {
 			delRowFunction : function () {
 				$(this).find(".command-delete").on("click", function (e) {
 					var topMenuGrpSeq = $(this).attr("data-topMenuGrpSeq");
-					location.href = topMenuGrpRest.contextPath + '/mng/config/midMenuGrp?topMenuGrpSeq=' + topMenuGrpSeq;
+					location.href = midMenuGrpRest.contextPath + 'mng/config/midMenuGrp?topMenuSeq=' + topMenuGrpSeq;
 				}).end();
 			}
-		};
-
+		}
 		gridUtils.showGrid(gridParams);
 	},
-	saveTopMenuGrp : function () {
-		$("#topMenuGrpFrm").ajaxSubmit({
-			url : this.contextPath + '/rest/menu/saveTopMenuGrp',
+	saveMidMenuGrp : function () {
+		$("#midMenuGrpFrm").ajaxSubmit({
+			url : this.contextPath + '/rest/menu/saveMidMenuGrp',
 			type : 'post',
 			beforeSubmit : function (arr, $form, options) {
 
 			},
 			success : function (datas) {
 				if (datas.resultCode == 'success') {
-					topMenuGrpRest.showTopMenuGrpGrid();
-					//formUtils.reset('topMenuGrpFrm');
+					midMenuGrpRest.showMidMenuGrpGrid();
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
 					return;
 				}
-
-				formUtils.reset('topMenuGrpFrm');
-				gridUtils.deselectGrid('#topMenuGrpGrid');
+				gridUtils.deselectGrid('#midMenuGrpGrid')
+				formUtils.reset('midMenuGrpFrm');
 			}
 		});
 	},
 	delAccount : function (topMenuGrpSeq) {
 		$.ajax({
-			url: this.contextPath + '/rest/menu/delTopMenuGrp',
+			url: this.contextPath + '/rest/menu/delMidMenuGrp',
 			contentType: "application/json; charset=utf-8",
 			data: JSON.stringify({
 				topMenuGrpSeq : topMenuGrpSeq
@@ -80,11 +81,11 @@ var topMenuGrpRest = {
 	setEvents : function () {
 		$('#hdnRegDate').val(new Date());
 		$('#btnNew').click(function () {
-			formUtils.reset('topMenuGrpFrm');
+			formUtils.reset('midMenuGrpFrm');
 		});
 
 		$('#btnSave').click(function () {
-			topMenuGrpRest.saveTopMenuGrp();
+			midMenuGrpRest.saveMidMenuGrp();
 		});
 	}
 }

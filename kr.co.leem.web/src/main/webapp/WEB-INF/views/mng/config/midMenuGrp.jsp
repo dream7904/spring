@@ -26,10 +26,10 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<div class="dataTable_wrapper">
-						<table id="topMenuGrpGrid" class="table table-condensed table-hover table-striped">
+						<table id="midMenuGrpGrid" class="table table-condensed table-hover table-striped">
 							<thead>
 							<tr>
-								<th data-column-id="topMenuGrpSeq" data-type="numeric" data-identifier="true" data-align="center" data-header-align="center"
+								<th data-column-id="midMenuGrpSeq" data-type="numeric" data-identifier="true" data-align="center" data-header-align="center"
 								    data-sortable="false">Seq
 								</th>
 								<th data-column-id="name" data-align="center" data-header-align="center"
@@ -82,10 +82,10 @@
 				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<form role="form" id="topMenuGrpFrm" name="topMenuGrpFrm" method="post">
+					<form role="form" id="midMenuGrpFrm" name="midMenuGrpFrm" method="post">
 						<div class="form-group">
 							<label for="txtName">메뉴명</label>
-							<input type="text" class="form-control" id="txtName" name="name" placeholder="아이디를 입력해 주세요."/>
+							<input type="text" class="form-control" id="txtName" name="name" placeholder="메뉴명을 입력해 주세요."/>
 						</div>
 						<div class="form-group">
 							<label for="txtDescription">내용</label>
@@ -108,8 +108,8 @@
 						</div>
 
 						<input type="hidden" id="hdnRegDate" name="regDate" value="">
-						<input type="hidden" id="hdnTopMenuGrpSeq" name="topMenuGrpSeq" value="">
-
+						<input type="hidden" id="hdnMidMenuGrpSeq" name="midMenuGrpSeq" value="">
+						<input type="hidden" id="hdnTopMenuGrpSeq" name="tmgSeq" value="${param.topMenuGrpSeq}">
 						<button type="button" id="btnNew" class="btn btn-outline btn-primary">신규</button>
 						<button type="button" id="btnSave" class="btn btn-outline btn-success">저장</button>
 					</form>
@@ -126,8 +126,9 @@
 <!-- /container -->
 <script type="text/javascript">
 	$(function () {
-		topMenuGrpRest.contextPath = '${contextPath}';
-		topMenuGrpRest.showTopMenuGrpGrid();
-		topMenuGrpRest.setEvents();
+		midMenuGrpRest.contextPath = '${contextPath}';
+		midMenuGrpRest.topMenuGrpSeq = ${param.topMenuGrpSeq}
+		midMenuGrpRest.showMidMenuGrpGrid();
+		midMenuGrpRest.setEvents();
 	});
 </script>

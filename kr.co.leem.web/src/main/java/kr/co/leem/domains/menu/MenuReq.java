@@ -7,6 +7,7 @@ import kr.co.leem.libs.jpa.params.PageParams;
  */
 public class MenuReq extends PageParams {
 	private long topMenuGrpSeq;
+	private long midMenuGrpSeq;
 	private boolean using;
 
 	public long getTopMenuGrpSeq() {
@@ -15,6 +16,14 @@ public class MenuReq extends PageParams {
 
 	public void setTopMenuGrpSeq(long topMenuGrpSeq) {
 		this.topMenuGrpSeq = topMenuGrpSeq;
+	}
+
+	public long getMidMenuGrpSeq() {
+		return midMenuGrpSeq;
+	}
+
+	public void setMidMenuGrpSeq(long midMenuGrpSeq) {
+		this.midMenuGrpSeq = midMenuGrpSeq;
 	}
 
 	public boolean isUsing() {

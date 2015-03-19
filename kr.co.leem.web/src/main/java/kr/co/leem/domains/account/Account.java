@@ -136,7 +136,7 @@ public class Account {
 	}
 
 	@Basic
-	@Column(name = "regDate", length = 20)
+	@Column(name = "regDate", length = 20, insertable = true)
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -156,7 +156,7 @@ public class Account {
 	}
 
 	@Basic
-	@Column(name = "updDate", length = 20)
+	@Column(name = "updDate", length = 20, updatable = true)
 	public Date getUpdDate() {
 		return updDate;
 	}

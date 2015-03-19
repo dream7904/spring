@@ -3,6 +3,7 @@ package kr.co.leem.web.controllers.rest;
 import kr.co.leem.constants.ResultType;
 import kr.co.leem.constants.ResultValue;
 import kr.co.leem.domains.menu.MenuReq;
+import kr.co.leem.domains.menu.MidMenuGrp;
 import kr.co.leem.domains.menu.TopMenuGrp;
 import kr.co.leem.web.services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,48 @@ public class MenuRestController {
 		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
 
 		menuService.delTopMenuGrp(menuReq, resultMap);
+
+		resultMap.put(ResultType.resultCode, ResultValue.success);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "getMidMenuGrps")
+	public Map<ResultType, Object> getMidMenuGrps(MenuReq menuReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.getMidMenuGrps(menuReq, resultMap);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "getMidMenuGrp")
+	public Map<ResultType, Object> getMidMenuGrp(@RequestBody MenuReq menuReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.getMidMenuGrp(menuReq, resultMap);
+
+		resultMap.put(ResultType.resultCode, ResultValue.success);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "saveMidMenuGrp")
+	public Map<ResultType, Object> saveMidMenuGrp(MidMenuGrp midMenuGrp) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.saveMidMenuGrp(midMenuGrp, resultMap);
+
+		resultMap.put(ResultType.resultCode, ResultValue.success);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "delMidMenuGrp")
+	public Map<ResultType, Object> delMidMenuGrp(@RequestBody MenuReq menuReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.delMidMenuGrp(menuReq, resultMap);
 
 		resultMap.put(ResultType.resultCode, ResultValue.success);
 

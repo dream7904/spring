@@ -21,7 +21,7 @@ var loginRest = {
 			success : function (datas) {
 				console.log(datas)
 				if (datas.resultCode == 'success') {
-					location.href = loginRest.contextPath + '/main/index'
+					location.href = loginRest.contextPath + '/mng/config/topMenuGrp'
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
 					return;

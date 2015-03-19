@@ -9,15 +9,15 @@ import java.util.Date;
 @Entity(name = "LowMenu")
 @Table(name = "LOW_MENU")
 public class LowMenu {
-	private long lowMenuSeq;
-	private long mmgSeq;
+	private Long lowMenuSeq;
+	private Long mmgSeq;
 	private MidMenuGrp midMenuGrp;
 	private String name;
 	private String url;
 	private String description;
-	private boolean using;
+	private Boolean enabled;
 	private String iconNm;
-	private int ord;
+	private Integer ord;
 
 	private Date regDate;
 	private String regId;
@@ -27,21 +27,21 @@ public class LowMenu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "lowMenuSeq", length = 32)
-	public long getLowMenuSeq() {
+	public Long getLowMenuSeq() {
 		return lowMenuSeq;
 	}
 
-	public void setLowMenuSeq(long lowMenuSeq) {
+	public void setLowMenuSeq(Long lowMenuSeq) {
 		this.lowMenuSeq = lowMenuSeq;
 	}
 
 	@Basic
 	@Column(name = "mmgSeq", length = 32)
-	public long getMmgSeq() {
+	public Long getMmgSeq() {
 		return mmgSeq;
 	}
 
-	public void setMmgSeq(long mmgSeq) {
+	public void setMmgSeq(Long mmgSeq) {
 		this.mmgSeq = mmgSeq;
 	}
 
@@ -86,13 +86,13 @@ public class LowMenu {
 	}
 
 	@Basic
-	@Column(name = "using")
-	public boolean isUsing() {
-		return using;
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setUsing(boolean using) {
-		this.using = using;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Basic
@@ -107,11 +107,11 @@ public class LowMenu {
 
 	@Basic
 	@Column(name = "ord", length = 10)
-	public int getOrd() {
+	public Integer getOrd() {
 		return ord;
 	}
 
-	public void setOrd(int ord) {
+	public void setOrd(Integer ord) {
 		this.ord = ord;
 	}
 

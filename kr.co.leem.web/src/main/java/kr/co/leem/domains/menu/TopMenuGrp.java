@@ -10,15 +10,15 @@ import java.util.List;
 @Entity(name = "TopMenuGrp")
 @Table(name = "TOP_MENU_GRP")
 public class TopMenuGrp {
-	private long topMenuGrpSeq;
+	private Long topMenuGrpSeq;
 	private String name;
 	private String description;
 	private String url;
 	private String onMenuImg;
 	private String offMenuImg;
-	private boolean using;
+	private Boolean enabled;
 	private String iconNm;
-	private int ord;
+	private Integer ord;
 	private List<MidMenuGrp> midMenuGrps;
 	private Date regDate;
 	private String regId;
@@ -28,11 +28,11 @@ public class TopMenuGrp {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "topMenuGrpSeq", length = 32)
-	public long getTopMenuGrpSeq() {
+	public Long getTopMenuGrpSeq() {
 		return topMenuGrpSeq;
 	}
 
-	public void setTopMenuGrpSeq(long topMenuGrpSeq) {
+	public void setTopMenuGrpSeq(Long topMenuGrpSeq) {
 		this.topMenuGrpSeq = topMenuGrpSeq;
 	}
 
@@ -87,13 +87,13 @@ public class TopMenuGrp {
 	}
 
 	@Basic
-	@Column(name = "using")
-	public boolean isUsing() {
-		return using;
+	@Column(name = "enabled", nullable = false)
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setUsing(boolean using) {
-		this.using = using;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Basic
@@ -108,15 +108,15 @@ public class TopMenuGrp {
 
 	@Basic
 	@Column(name = "ord", length = 10)
-	public int getOrd() {
+	public Integer getOrd() {
 		return ord;
 	}
 
-	public void setOrd(int ord) {
+	public void setOrd(Integer ord) {
 		this.ord = ord;
 	}
 
-	@OneToMany(mappedBy = "topMenuGrp", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "topMenuGrp", fetch = FetchType.EAGER)
 	public List<MidMenuGrp> getMidMenuGrps() {
 		return midMenuGrps;
 	}
