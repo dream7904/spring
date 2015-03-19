@@ -83,6 +83,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 */
 	public static String[] addStringToArray(String array[], String str) {
 		String newArray[] = new String[array.length + 1];
+
 		System.arraycopy(array, 0, newArray, 0, array.length);
 		newArray[array.length] = str;
 		
@@ -343,6 +344,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (sourceStr == null || anotherStr == null) {
 			return -1;
 		}
+
 		return sourceStr.compareToIgnoreCase(anotherStr);
 	}
 	
@@ -443,6 +445,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		
 		for (int i = 0; i < allLower.length(); i++) {
 			char currentChar = allLower.charAt(i);
+
 			if (currentChar == posChar) {
 				nextUpper = true;
 			} else {
@@ -450,6 +453,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 					currentChar = Character.toUpperCase(currentChar);
 					nextUpper = false;
 				}
+
 				result.append(currentChar);
 			}
 		}
@@ -468,9 +472,11 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		
 		for (int i = 0; i < str.length(); i++) {
 			char currentChar = str.charAt(i);
+
 			if (i > 0 && Character.isUpperCase(currentChar)) {
 				result = result.concat("_");
 			}
+
 			result = result.concat(Character.toString(currentChar).toLowerCase());
 		}
 		
@@ -485,7 +491,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 * @return 반복되는 횟수.
 	 */
 	public static int countPattern(String str, String pattern) {
-		if (str == null || pattern == null || "".equals(pattern)) {
+		if (StringUtils.isEmpty(str) || StringUtils.isEmpty(pattern)) {
 			return 0;
 		}
 		
@@ -565,15 +571,19 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (str == null) {
 			return null;
 		}
+
 		if (delimiter == null) {
 			return new String[] { str };
 		}
+
 		List<String> tokens = new ArrayList<String>();
 		int pos = 0;
+
 		for (int index = 0; (index = str.indexOf(delimiter, pos)) != -1;) {
 			tokens.add(str.substring(pos, index));
 			pos = index + delimiter.length();
 		}
+
 		if (pos <= str.length()) {
 			tokens.add(str.substring(pos));
 		}
@@ -661,9 +671,11 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (str == null || chars == null) {
 			return -1;
 		}
+
 		int strSize = str.length();
 		int validSize = chars.length;
 		int check = 0;
+
 		for (int i = 0; i < strSize; i++) {
 			char ch = str.charAt(i);
 			for (int j = 0; j < validSize; j++) {
@@ -672,6 +684,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 				}
 			}
 		}
+
 		return check;
 	}
 	
@@ -751,6 +764,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	public static String getLastString(String origStr, String strToken) {
 		StringTokenizer str = new StringTokenizer(origStr, strToken);
 		String lastStr = "";
+
 		while (str.hasMoreTokens()) {
 			lastStr = str.nextToken();
 		}
@@ -796,6 +810,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 
 		int gap = endInt - startInt;
 		StringBuilder buf = new StringBuilder();
+
 		for (int i = 0; i < length; i++) {
 			int chInt;
 			do {
@@ -829,6 +844,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 */
 	public static String getRandomStringByCharset(int length, String charset) {
 		String randomStr = getRandomString(length);
+
 		return DigestUtils.encodeCharset(randomStr, charset);
 	}
 	
@@ -842,9 +858,11 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	public static String getRandomStringByKorean(int count)
 			throws UnsupportedEncodingException {
 		StringBuilder buf = new StringBuilder();
+
 		for (int i = 0; i < count; i++) {
 			buf.append((char) (StringUtils.generator.nextInt(11172) + 0xAC00));
 		}
+
 		return buf.toString();
 	}
 	
@@ -859,11 +877,14 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (str.indexOf(strToken) != -1) {
 			StringTokenizer st = new StringTokenizer(str, strToken);
 			String[] stringArray = new String[st.countTokens()];
+
 			for (int i = 0; st.hasMoreTokens(); i++) {
 				stringArray[i] = st.nextToken();
 			}
+
 			return stringArray;
 		}
+
 		return new String[] { str };
 	}
 	
@@ -905,7 +926,6 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 * @return UniCode String
 	 */
 	public static String hexToString(String str) {
-		
 		String inStr = str;
 		char inChar[] = inStr.toCharArray();
 		StringBuffer sb = new StringBuffer();
@@ -938,9 +958,12 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (str == null) {
 			return false;
 		}
+
 		int sz = str.length();
+
 		if (sz == 0)
 			return false;
+
 		for (int i = 0; i < sz; i++) {
 			if (!Character.isLetter(str.charAt(i))) {
 				return false;
@@ -959,7 +982,9 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (str == null) {
 			return false;
 		}
+
 		int sz = str.length();
+
 		if (sz == 0)
 			return false;
 		for (int i = 0; i < sz; i++) {
@@ -1320,7 +1345,8 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		int difference = length - originalStrLength;
 		
 		StringBuilder strBuf = new StringBuilder();
-		if (!isLeft) {
+
+		if (isLeft == false) {
 			strBuf.append(str);
 		}
 		
@@ -1379,7 +1405,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		String tempPad = "";
 		
 		if (difference > 0) {
-			if (padStr == null || "".equals(padStr)) {
+			if (StringUtils.isEmpty(padStr)) {
 				padStr = " ";
 			}
 			do {
@@ -1422,7 +1448,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		int tops = 0;
 		
 		for (int i = pArray.length - 1; i >= 0; i--) {
-			if (".".equals(pArray[i])) {
+			if (StringUtils.equals(".", pArray[i])) {
 				continue;
 			} else if ("..".equals(pArray[i])) {
 				tops++;
@@ -1474,7 +1500,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 * 문자열에서 특정 문자열이 삭제된 문자열을 반환함.
 	 * 
 	 * @param str 문자열 값.
-	 * @param charsToDelete 삭제할 문자열 값.
+	 * @param delStr 삭제할 문자열 값.
 	 * @return 문자열에서 특정 문자열이 삭제된 문자열.
 	 * @see org.springframework.util.StringUtils#deleteAny(String, String)
 	 */
@@ -1600,7 +1626,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 * 문자열 내에 escaped되어 있지 않는 문자를 html escaped문자로 변환하여 반환함.
 	 * replaceHtmlEscape("<html>Test</html>") => "&lt;html&gt;Test&lt;html&gt;"
 	 * 
-	 * @param str 문자열 값.
+	 * @param input 문자열 값.
 	 * @return 변환된 문자열.
 	 * @see HtmlUtils#htmlEscape(String)
 	 */
@@ -1620,7 +1646,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(str);
 		
-		if (!matcher.find()) {
+		if (matcher.find() == false) {
 			return str;
 		}
 		
@@ -1871,7 +1897,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 * @return 문자열 값을 BigDecimal로 변환한 값.
 	 */
 	public static BigDecimal stringToBigDecimal(String str) {
-		if ("".equals(rightTrim(str)))
+		if (StringUtils.isEmpty(rightTrim(str)))
 			return new BigDecimal(0);
 		else
 			return new BigDecimal(str);
@@ -1886,7 +1912,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 	 * @return 정해진 위치값을 기준으로 문자열을  잘라내낸 BigDecimal.
 	 */
 	public static BigDecimal stringToBigDecimal(String str, int startPos, int endPos) {
-		if ("".equals(rightTrim(str)))
+		if (StringUtils.isEmpty(rightTrim(str)))
 			return new BigDecimal(0);
 		else if (str.length() < startPos + endPos)
 			return stringToBigDecimal(leftPad(str, startPos + endPos, "0"));
@@ -1977,7 +2003,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (str == null) {
 			return "";
 		}
-		if (str.length() != 10 || !isNumberOnly(str)) {
+		if (str.length() != 10 || isNumberOnly(str) == false) {
 			return "";
 		} else {
 			StringBuffer buffer = new StringBuffer();
@@ -2049,7 +2075,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 		if (str == null) {
 			return "";
 		}
-		if (str.length() != 13 || !isNumberOnly(str)) {
+		if (str.length() != 13 || isNumberOnly(str) == false) {
 			return "";
 		} else {
 			StringBuffer buffer = new StringBuffer();
@@ -2145,7 +2171,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
 			return "";
 		}
 		
-		if (str.length() != 6 || !isNumberOnly(str)) {
+		if (str.length() != 6 || isNumberOnly(str) == false) {
 			return "";
 		} else {
 			StringBuffer buffer = new StringBuffer();
