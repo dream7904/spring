@@ -5,6 +5,7 @@ import kr.co.leem.domains.account.Account;
 import kr.co.leem.domains.account.AccountReq;
 import kr.co.leem.libs.jpa.params.PagingHelper;
 import kr.co.leem.repositories.jpa.AccountRepository;
+import kr.co.leem.repositories.jpa.criterias.TestDAO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import java.util.Map;
 public class AccountServiceImpl implements AccountService {
 	@Autowired private AccountRepository accountRepository;
 	@Autowired private BCryptPasswordEncoder passwordEncoder;
+	@Autowired private TestDAO testDAO;
 
 	@Override
 	public void getAccounts(AccountReq accountReq, Map<ResultType, Object> resultMap) throws Exception {
@@ -62,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void setDefaultAccount(Map<ResultType, Object> resultMap) throws Exception {
 		long cntUsers = accountRepository.count();
-
+		testDAO.getTestData(resultMap);
 		if (cntUsers < 1) {
 			Account account = new Account();
 			account.setAccountId("admin");

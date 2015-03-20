@@ -5,3 +5,9 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="requestUri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+
+<sec:authorize var="isAuthenticated" access="isAuthenticated()"/>
+<%--
+<c:if test="${isAuthenticated == true}">
+	<sec:authentication var="userId" property="principal.userDocument.account"/>
+</c:if>--%>
