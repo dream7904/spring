@@ -32,7 +32,6 @@ public class TestDAOImpl implements TestDAO {
 
 		List<Account> accounts = entityManager.createQuery(cq).getResultList();
 
-
 		CriteriaQuery<Long> countQuery = builder.createQuery(Long.class);
 		countQuery.select(builder.count(countQuery.from(Account.class)));
 		Long count = entityManager.createQuery(countQuery).getSingleResult();
