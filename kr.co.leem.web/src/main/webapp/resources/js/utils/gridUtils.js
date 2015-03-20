@@ -43,7 +43,7 @@ var gridColFormatter = {
 		return '<button type="button" class="btn bootgrid btn-outline btn-danger btn-xs command-delete" data-topMenuGrpSeq="' + row['topMenuGrpSeq'] + '"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>';
 	},
 	lowMidMenuGrpPage : function (column, row) {
-		return '<button type="button" class="btn bootgrid btn-outline btn-danger btn-xs command-delete" data-topMenuGrpSeq="' + row['midMenuGrpSeq'] + '"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>';
+		return '<button type="button" class="btn bootgrid btn-outline btn-danger btn-xs command-delete" data-topMenuGrpSeq="' + row['tmgSeq'] + '"  data-midMenuGrpSeq="' + row['midMenuGrpSeq'] + '"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>';
 	}
 
 }

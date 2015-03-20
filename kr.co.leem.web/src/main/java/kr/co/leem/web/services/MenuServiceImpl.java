@@ -1,10 +1,12 @@
 package kr.co.leem.web.services;
 
 import kr.co.leem.constants.ResultType;
+import kr.co.leem.domains.menu.LowMenu;
 import kr.co.leem.domains.menu.MenuReq;
 import kr.co.leem.domains.menu.MidMenuGrp;
 import kr.co.leem.domains.menu.TopMenuGrp;
 import kr.co.leem.libs.jpa.params.PagingHelper;
+import kr.co.leem.repositories.jpa.LowMenuRepository;
 import kr.co.leem.repositories.jpa.MidMenuGrpRepository;
 import kr.co.leem.repositories.jpa.TopMenuGrpRepository;
 import org.apache.commons.lang.StringUtils;
@@ -22,6 +24,7 @@ import java.util.Map;
 public class MenuServiceImpl implements MenuService {
 	@Autowired private TopMenuGrpRepository topMenuGrpRepository;
 	@Autowired private MidMenuGrpRepository midMenuGrpRepository;
+	@Autowired private LowMenuRepository lowMenuRepository;
 
 	@Override
 	public void getTopMenuGrps(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception {
@@ -93,5 +96,43 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public void delMidMenuGrp(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception {
 		midMenuGrpRepository.delete(menuReq.getMidMenuGrpSeq());
+	}
+
+	@Override
+	public void getLowMenus(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception {
+		Pageable pageable = PagingHelper.createPageRequest(menuReq);
+		String searchPhrase = menuReq.getSearchPhrase();
+
+		Page<LowMenu> page = null;
+
+		if (StringUtils.isEmpty(searchPhrase)) {
+			page = lowMenuRepository.findAllByMmgSeqOrderByOrdAsc(pageable, menuReq.getMidMenuGrpSeq());
+		} else {
+			page = lowMenuRepository.findAllByMmgSeqAndNameContainingOrDescriptionContainingOrderByOrdAsc(
+				pageable, menuReq.getMidMenuGrpSeq(), searchPhrase, searchPhrase
+			);
+		}
+
+		if (page != null) {
+			resultMap.put(ResultType.total, page.getTotalElements()); // 총 페이지수
+			resultMap.put(ResultType.current, menuReq.getCurrent());	// 현재 페이지
+			resultMap.put(ResultType.record, menuReq.getRowCount()); // 총 레코드 수
+			resultMap.put(ResultType.rows, page.getContent());
+		}
+	}
+
+	@Override
+	public void getLowMenu(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception {
+		resultMap.put(ResultType.row, lowMenuRepository.findOne(menuReq.getLowMenuSeq()));
+	}
+
+	@Override
+	public void saveLowMenu(LowMenu lowMenu, Map<ResultType, Object> resultMap) throws Exception {
+		resultMap.put(ResultType.row, lowMenuRepository.save(lowMenu));
+	}
+
+	@Override
+	public void delLowMenu(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception {
+		lowMenuRepository.delete(menuReq.getLowMenuSeq());
 	}
 }

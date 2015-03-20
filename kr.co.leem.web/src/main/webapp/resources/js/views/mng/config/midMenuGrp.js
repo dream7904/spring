@@ -12,7 +12,7 @@ var midMenuGrpRest = {
 				topMenuGrpSeq : midMenuGrpRest.topMenuGrpSeq
 			},
 			formatters : {
-				moveMidMenuGrpPage : gridColFormatter.moveMidMenuGrpPage,
+				moveMidMenuGrpPage : gridColFormatter.lowMidMenuGrpPage,
 				regDateYmd : gridColFormatter.regDateYmd,
 				enabled : gridColFormatter.enabled
 			},
@@ -35,7 +35,8 @@ var midMenuGrpRest = {
 			delRowFunction : function () {
 				$(this).find(".command-delete").on("click", function (e) {
 					var topMenuGrpSeq = $(this).attr("data-topMenuGrpSeq");
-					location.href = midMenuGrpRest.contextPath + 'mng/config/midMenuGrp?topMenuSeq=' + topMenuGrpSeq;
+					var midMenuGrpSeq = $(this).attr("data-midMenuGrpSeq");
+					location.href = midMenuGrpRest.contextPath + '/mng/config/lowMenu?topMenuGrpSeq=' + topMenuGrpSeq + '&midMenuGrpSeq=' + midMenuGrpSeq;
 				}).end();
 			}
 		}
@@ -50,14 +51,12 @@ var midMenuGrpRest = {
 			},
 			success : function (datas) {
 				if (datas['resultCode'] == 'success') {
+
 					midMenuGrpRest.showMidMenuGrpGrid();
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
 					return;
 				}
-
-				gridUtils.deselectGrid('#midMenuGrpGrid');
-				formUtils.reset('midMenuGrpFrm');
 			}
 		});
 	},
@@ -87,7 +86,12 @@ var midMenuGrpRest = {
 	setEvents : function () {
 		$('#hdnRegDate').val(new Date());
 		$('#btnNew').click(function () {
+			$('#hdnRegDate').val('');
+			$('#hdnMidMenuGrpSeq').val('');
+			$('#hdnTopMenuGrpSeq').val('');
+			$('#hdnRegDate').val();
 			formUtils.reset('midMenuGrpFrm');
+			gridUtils.deselectGrid('#midMenuGrpGrid')
 		});
 
 		$('#btnSave').click(function () {

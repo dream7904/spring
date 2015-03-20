@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by Administrator on 2015-03-18.
  */
 public interface LowMenuRepository extends JpaRepository <LowMenu, Long> {
-	public Page<LowMenu> findAllByMidMenuGrpTmgSeqAndMmgSeqOrderByOrdAsc(Pageable pageable);
-	public Page<LowMenu> findAllByMidMenuGrpTmgSeqAndMmgSeqAndNameContainingOrDescriptionContainingOrderByOrdAsc(Pageable pageable, String name, String description);
+	public Page<LowMenu> findAllByMmgSeqOrderByOrdAsc(Pageable pageable, Long mmgSeq);
+	public Page<LowMenu> findAllByMmgSeqAndNameContainingOrDescriptionContainingOrderByOrdAsc(Pageable pageable, Long mmgSeq, String name, String description);
 }

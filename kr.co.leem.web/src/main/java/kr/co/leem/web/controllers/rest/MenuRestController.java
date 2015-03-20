@@ -2,6 +2,7 @@ package kr.co.leem.web.controllers.rest;
 
 import kr.co.leem.constants.ResultType;
 import kr.co.leem.constants.ResultValue;
+import kr.co.leem.domains.menu.LowMenu;
 import kr.co.leem.domains.menu.MenuReq;
 import kr.co.leem.domains.menu.MidMenuGrp;
 import kr.co.leem.domains.menu.TopMenuGrp;
@@ -100,6 +101,48 @@ public class MenuRestController {
 		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
 
 		menuService.delMidMenuGrp(menuReq, resultMap);
+
+		resultMap.put(ResultType.resultCode, ResultValue.success);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "getLowMenus")
+	public Map<ResultType, Object> getLowMenus(MenuReq menuReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.getLowMenus(menuReq, resultMap);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "getLowMenu")
+	public Map<ResultType, Object> getLowMenu(@RequestBody MenuReq menuReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.getLowMenu(menuReq, resultMap);
+
+		resultMap.put(ResultType.resultCode, ResultValue.success);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "saveLowMenu")
+	public Map<ResultType, Object> saveLowMenu(LowMenu lowMenu) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.saveLowMenu(lowMenu, resultMap);
+
+		resultMap.put(ResultType.resultCode, ResultValue.success);
+
+		return resultMap;
+	}
+
+	@RequestMapping(value = "delLowMenu")
+	public Map<ResultType, Object> delLowMenu(@RequestBody MenuReq menuReq) throws Exception {
+		Map<ResultType, Object> resultMap = new HashMap<ResultType, Object>();
+
+		menuService.delLowMenu(menuReq, resultMap);
 
 		resultMap.put(ResultType.resultCode, ResultValue.success);
 

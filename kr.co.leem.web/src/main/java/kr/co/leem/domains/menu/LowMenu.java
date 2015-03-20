@@ -1,5 +1,7 @@
 package kr.co.leem.domains.menu;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ import java.util.Date;
  */
 @Entity(name = "LowMenu")
 @Table(name = "LOW_MENU")
+@JsonIgnoreProperties(value = {"midMenuGrp"})
 public class LowMenu {
 	private Long lowMenuSeq;
 	private Long mmgSeq;

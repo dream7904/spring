@@ -2,6 +2,7 @@ package kr.co.leem.repositories.jpa.criterias;
 
 import kr.co.leem.constants.ResultType;
 import kr.co.leem.domains.account.Account;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -17,12 +18,12 @@ import java.util.Map;
  *
  * Created by Administrator on 2015-03-20.
  */
-@Service
-public class TestDAOImpl implements TestDAO {
+@Repository
+public class SampleCriteriaDAOImpl implements SampleCriteriaDAO {
 	@PersistenceContext private EntityManager entityManager;
 
 	@Override
-	public void getTestData(Map<ResultType, Object> resultMap) {
+	public void getSelectDatas(Map<ResultType, Object> resultMap) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Account> cq = builder.createQuery(Account.class);
 
@@ -33,7 +34,7 @@ public class TestDAOImpl implements TestDAO {
 		List<Account> accounts = entityManager.createQuery(cq).getResultList();
 
 		CriteriaQuery<Long> countQuery = builder.createQuery(Long.class);
-		countQuery.select(builder.count(countQuery.from(Account.class)));
+		countQuery.select(builder.count(countQuery.from(Account.class))).where(builder.equal(root.get("accountId"), "admin"));
 		Long count = entityManager.createQuery(countQuery).getSingleResult();
 
 		System.out.println(count);

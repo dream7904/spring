@@ -255,6 +255,12 @@
 			<artifactId>commons</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>kr.co.leem</groupId>
+			<artifactId>utils</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

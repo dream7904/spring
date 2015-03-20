@@ -3,9 +3,11 @@ package kr.co.leem.web.services;
 import kr.co.leem.constants.ResultType;
 import kr.co.leem.domains.account.Account;
 import kr.co.leem.domains.account.AccountReq;
+import kr.co.leem.domains.menu.MenuReq;
 import kr.co.leem.libs.jpa.params.PagingHelper;
 import kr.co.leem.repositories.jpa.AccountRepository;
-import kr.co.leem.repositories.jpa.criterias.TestDAO;
+import kr.co.leem.repositories.jpa.criterias.LowMenuDAO;
+import kr.co.leem.repositories.jpa.criterias.SampleCriteriaDAO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +24,8 @@ import java.util.Map;
 public class AccountServiceImpl implements AccountService {
 	@Autowired private AccountRepository accountRepository;
 	@Autowired private BCryptPasswordEncoder passwordEncoder;
-	@Autowired private TestDAO testDAO;
+	@Autowired private SampleCriteriaDAO sampleCriteriaDAO;
+	@Autowired private LowMenuDAO lowMenuDAO;
 
 	@Override
 	public void getAccounts(AccountReq accountReq, Map<ResultType, Object> resultMap) throws Exception {
@@ -64,7 +67,11 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void setDefaultAccount(Map<ResultType, Object> resultMap) throws Exception {
 		long cntUsers = accountRepository.count();
-		testDAO.getTestData(resultMap);
+		sampleCriteriaDAO.getSelectDatas(resultMap);
+		MenuReq menuReq = new MenuReq();
+		menuReq.setMidMenuGrpSeq(3L);
+		menuReq.setSearchPhrase("1");
+		System.out.println(lowMenuDAO.cntTotalLowMenus(menuReq));
 		if (cntUsers < 1) {
 			Account account = new Account();
 			account.setAccountId("admin");

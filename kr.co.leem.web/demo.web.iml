@@ -101,7 +101,6 @@
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-core:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-api:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: commons-digester:commons-digester:2.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-servlet-wildcard:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-servlet:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-mustache:1.0.3" level="project" />
@@ -117,7 +116,6 @@
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.15" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-velocity:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.velocity:velocity-tools:2.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2" level="project" />
     <orderEntry type="library" name="Maven: oro:oro:2.0.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.velocity:velocity:1.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-velocity:1.0.3" level="project" />
@@ -144,5 +142,9 @@
     <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="module" module-name="commons" />
+    <orderEntry type="module" module-name="utils" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.9.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
   </component>
 </module>

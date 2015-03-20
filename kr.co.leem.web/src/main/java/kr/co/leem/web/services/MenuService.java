@@ -1,6 +1,7 @@
 package kr.co.leem.web.services;
 
 import kr.co.leem.constants.ResultType;
+import kr.co.leem.domains.menu.LowMenu;
 import kr.co.leem.domains.menu.MenuReq;
 import kr.co.leem.domains.menu.MidMenuGrp;
 import kr.co.leem.domains.menu.TopMenuGrp;
@@ -20,4 +21,9 @@ public interface MenuService {
 	public void getMidMenuGrp(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception;
 	public void saveMidMenuGrp(MidMenuGrp midMenuGrp, Map<ResultType, Object> resultMap) throws Exception;
 	public void delMidMenuGrp(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception;
+
+	public void getLowMenus(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception;
+	public void getLowMenu(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception;
+	public void saveLowMenu(LowMenu lowMenu, Map<ResultType, Object> resultMap) throws Exception;
+	public void delLowMenu(MenuReq menuReq, Map<ResultType, Object> resultMap) throws Exception;
 }
