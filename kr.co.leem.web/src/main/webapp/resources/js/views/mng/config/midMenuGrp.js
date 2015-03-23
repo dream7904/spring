@@ -52,7 +52,10 @@ var midMenuGrpRest = {
 			success : function (datas) {
 				if (datas['resultCode'] == 'success') {
 
-					midMenuGrpRest.showMidMenuGrpGrid();
+					gridUtils.deselectGrid('#midMenuGrpGrid');
+					formUtils.reset('midMenuGrpFrm');
+					$('#hdnMidMenuGrpSeq').val('');
+					gridUtils.reloadGrid('#midMenuGrpGrid');
 				} else {
 					alert('아이디 또는 패스워드가 일치하지 않습니다.');
 					return;
@@ -86,12 +89,10 @@ var midMenuGrpRest = {
 	setEvents : function () {
 		$('#hdnRegDate').val(new Date());
 		$('#btnNew').click(function () {
-			$('#hdnRegDate').val('');
+			$('#hdnRegDate').val(new Date());
 			$('#hdnMidMenuGrpSeq').val('');
-			$('#hdnTopMenuGrpSeq').val('');
-			$('#hdnRegDate').val();
 			formUtils.reset('midMenuGrpFrm');
-			gridUtils.deselectGrid('#midMenuGrpGrid')
+			gridUtils.deselectGrid('#midMenuGrpGrid');
 		});
 
 		$('#btnSave').click(function () {

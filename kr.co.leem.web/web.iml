@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="web" name="kr.co.leem.web">
+    <facet type="web" name="Web">
       <configuration>
         <descriptors>
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
@@ -25,7 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.1.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.1.5.RELEASE" level="project" />
@@ -82,7 +82,6 @@
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-core:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-api:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: commons-digester:commons-digester:2.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-servlet-wildcard:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-servlet:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-mustache:1.0.3" level="project" />
@@ -98,7 +97,6 @@
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.15" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-velocity:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.velocity:velocity-tools:2.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2" level="project" />
     <orderEntry type="library" name="Maven: oro:oro:2.0.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.velocity:velocity:1.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-velocity:1.0.3" level="project" />
@@ -125,5 +123,9 @@
     <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="module" module-name="commons" />
+    <orderEntry type="module" module-name="utils" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.9.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
   </component>
 </module>

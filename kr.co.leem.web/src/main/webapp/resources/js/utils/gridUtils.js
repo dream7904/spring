@@ -21,6 +21,9 @@ var gridUtils = {
 	},
 	deselectGrid : function (gridId) {
 		$(gridId).bootgrid("deselect");
+	},
+	reloadGrid : function (gridId) {
+		$(gridId).bootgrid("reload");
 	}
 }
 

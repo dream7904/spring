@@ -112,7 +112,6 @@
 			});
 
 			$(document).ajaxError(function (event, jqxhr, settings, thrownError ) {
-				alert('1')
 				if (jqxhr.status == 403) {
 					alert('올바르지 않은 접근이거나, 토큰 또는 세션이 만료되었습니다.\n로그인 페이지로 이동합니다.');
 					//location.href = '${contextPath}/login';

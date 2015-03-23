@@ -26,6 +26,7 @@ var topMenuGrpRest = {
 			},
 			resetFormFunction : function (e, rows) {
 				formUtils.reset('topMenuGrpFrm');
+				$('#hdnTopMenuGrpSeq').val('');
 			},
 			delRowFunction : function () {
 				$(this).find(".command-delete").on("click", function (e) {
@@ -42,16 +43,22 @@ var topMenuGrpRest = {
 			url : this.contextPath + '/rest/menu/saveTopMenuGrp',
 			type : 'post',
 			beforeSubmit : function (arr, $form, options) {
-
+				if (stringUtils.isEmpty($('#txtName').val())) {
+					alert('이름을 입력해 주세요.');
+					return false;
+				}
 			},
 			success : function (datas) {
 				if (datas['resultCode'] == 'success') {
-					topMenuGrpRest.showTopMenuGrpGrid();
-					//formUtils.reset('topMenuGrpFrm');
+					alert('저장이 완료되었습니다.');
 				} else {
-					alert('아이디 또는 패스워드가 일치하지 않습니다.');
-					return;
+					alert('서버와의 통신중 오류가 발생했습니다.');
 				}
+
+				gridUtils.deselectGrid('#topMenuGrpGrid');
+				formUtils.reset('topMenuGrpFrm');
+				$('#hdnTopMenuGrpSeq').val('');
+				gridUtils.reloadGrid('#topMenuGrpGrid');
 			}
 		});
 	},

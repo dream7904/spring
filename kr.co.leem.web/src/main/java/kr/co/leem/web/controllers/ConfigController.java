@@ -11,9 +11,9 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "mng/config")
 public class ConfigController {
-	@RequestMapping(value = "user")
+	@RequestMapping(value = "account")
 	public String users() throws Exception {
-		return "mng/config/user";
+		return "mng/config/account";
 	}
 
 	@RequestMapping(value = "topMenuGrp")
