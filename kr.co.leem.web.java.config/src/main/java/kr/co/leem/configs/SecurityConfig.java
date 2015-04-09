@@ -77,6 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		return sessionRegistry;
 	}
+
 	@Bean
 	public CompositeSessionAuthenticationStrategy sas() {
 		ConcurrentSessionControlAuthenticationStrategy concurrentSessionControlAuthenticationStrategy = new ConcurrentSessionControlAuthenticationStrategy(sessionRegistry());
