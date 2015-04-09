@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
 
@@ -53,6 +54,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(passwordEncoder());
 	}
 
+	@Bean
+	SimpleUrlLogoutSuccessHandler logoutSuccessHandler() {
+		SimpleUrlLogoutSuccessHandler simpleUrlLogoutSuccessHandler = new SimpleUrlLogoutSuccessHandler();
+
+		simpleUrlLogoutSuccessHandler.setDefaultTargetUrl("/");
+		simpleUrlLogoutSuccessHandler.setAlwaysUseDefaultTargetUrl(true);
+
+		return simpleUrlLogoutSuccessHandler;
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -60,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/rest/**", "/favicon.ico", "/resources/**", "/login").permitAll()
 				.anyRequest().authenticated()
 				.and()
+				.sessionManagement().maximumSessions(1).expiredUrl("/").and().invalidSessionUrl("/").and()
 				.formLogin()
 					.loginPage("/login")
 					.permitAll()
@@ -67,43 +79,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.logout()
 					.logoutUrl("/logout")
- 				.permitAll()
-				.logoutSuccessUrl("/");
+					.permitAll()
+					.logoutSuccessHandler(logoutSuccessHandler())
+				.and()
+					.csrf()
+				.and()
+					.headers()
+						.cacheControl()
+						.and()
+						.frameOptions()
+						.and()
+						.xssProtection()
+						.and()
+						.httpStrictTransportSecurity()
+						.and()
+						.contentTypeOptions()
+						.and()
+						.xssProtection();
 	}
-
-/*
-* <http use-expressions="true">
-		<csrf/>
-
-		<headers>
-			<cache-control/>
-			<content-type-options/>
-			<hsts/>
-			<frame-options/>
-			<xss-protection/>
-		</headers>
-
-		<intercept-url pattern="/ws/**" access="permitAll" />
-		<intercept-url pattern="/resources/**" access="permitAll"/>
-
-		<form-login login-page="/login" username-parameter="accountId" password-parameter="password"/>
-
-		<logout logout-url="/logout" invalidate-session="true" success-handler-ref="logoutSuccessHandler" />
-	</http>
-
-	<beans:bean id="logoutSuccessHandler"
-		class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
-		<beans:property name="defaultTargetUrl" value="/" />
-		<beans:property name="alwaysUseDefaultTargetUrl" value="true" />
-	</beans:bean>
-
-	<beans:bean id="userDetailsService" class="kr.co.leem.libs.security.UserDetailService"/>
-
-	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-
-	<authentication-manager alias="authenticationManager">
-		<authentication-provider user-service-ref="userDetailsService">
-			<password-encoder ref="passwordEncoder"/>
-		</authentication-provider>
-	</authentication-manager>*/
 }
