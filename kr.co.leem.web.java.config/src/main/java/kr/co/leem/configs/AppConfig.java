@@ -49,27 +49,6 @@ public class AppConfig {
 		return dataSource;
 	}
 
-
-	/*
-	* <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="database"><value>${entityManager.database}</value></property>
-				<property name="generateDdl"><value>${entityManager.generateDdl}</value></property>
-				<property name="showSql"><value>${entityManager.showSql}</value></property>
-			</bean>
-		</property>
-		<property name="persistenceUnitName" value="DefaultGenesis" />
-		<property name="jpaProperties">
-			<props>
-				<prop key="database.mysql.engine">InnoDB</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-			</props>
-		</property>
-	</bean>
-	*/
-
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();

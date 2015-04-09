@@ -241,6 +241,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>kr.co.leem</groupId>
 			<artifactId>commons</artifactId>
 			<version>0.0.1</version>

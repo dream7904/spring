@@ -13,10 +13,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -42,6 +44,10 @@ public class HomeRestController {
 	@Autowired
 	@Qualifier("sessionRegistry")
 	private SessionRegistry sessionRegistry;
+
+	@Inject
+	@Qualifier("sas")
+	private SessionAuthenticationStrategy sessionAuthenticationStrategy;
 
 	@RequestMapping(value = "getDefault")
 	public Map<String, Object> getDefault() throws Exception {
@@ -70,6 +76,9 @@ public class HomeRestController {
 
 			Authentication auth = authenticationManager.authenticate(token);
 			SecurityContextHolder.getContext().setAuthentication(auth);
+
+			sessionAuthenticationStrategy.onAuthentication(auth, request, response);
+
 
 			securityContextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
 
