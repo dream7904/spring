@@ -1,8 +1,8 @@
 package kr.co.leem.commons.exceptions.base;
 
 public abstract class BaseAbstractException extends RuntimeException implements BaseErrorCoded {
-
 	private static final long serialVersionUID = 1L;
+
 	protected String errorMessageParameter;
 
 	public BaseAbstractException() {

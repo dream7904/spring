@@ -1,7 +1,6 @@
 package kr.co.leem.utils.lang;
 
 public class DoubleUtils {
-	
 	public static boolean isEmpty(Double doubleValue) throws Exception {
 		return doubleValue == null;
 	}

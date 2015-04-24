@@ -1,7 +1,6 @@
 package kr.co.leem.commons.domains;
 
 public class Smtp {
-	
 	private String host;
 	private String username;
 	private String password;
@@ -31,5 +30,4 @@ public class Smtp {
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
-	
 }

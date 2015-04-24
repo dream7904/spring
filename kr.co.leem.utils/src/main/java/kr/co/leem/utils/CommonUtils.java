@@ -1,7 +1,6 @@
 package kr.co.leem.utils;
 
 public class CommonUtils {
-	
 	/**
 	 * Ajax 요청 여부 체크.
 	 * 
@@ -12,6 +11,7 @@ public class CommonUtils {
 		if ("XMLHttpRequest".equalsIgnoreCase(header) || "Ajax".equalsIgnoreCase(header)) {
 			return true;
 		}
+
 		return false;
 	}
 }

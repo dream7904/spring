@@ -6,7 +6,6 @@ package kr.co.leem.commons.exceptions;
  *
  */
 public class UserHandleableException extends Exception {
-	
 	private static final long serialVersionUID = 1L;
 	
 	/**

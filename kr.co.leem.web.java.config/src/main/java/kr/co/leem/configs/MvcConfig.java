@@ -4,6 +4,9 @@ import kr.co.leem.libs.interceptors.DefaultInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
@@ -19,7 +22,10 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "kr.co.leem.web" })
+@ComponentScan(
+	basePackages = { "kr.co.leem" },
+	excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Service.class)
+)
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -74,5 +80,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		urlBasedViewResolver.setOrder(1);
 
 		return urlBasedViewResolver;
+	}
+
+	@Bean
+	public StandardServletMultipartResolver standardServletMultipartResolver() {
+		StandardServletMultipartResolver standardServletMultipartResolver = new StandardServletMultipartResolver();
+
+		return standardServletMultipartResolver;
 	}
 }

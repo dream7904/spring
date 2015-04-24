@@ -1,7 +1,6 @@
 package kr.co.leem.utils.lang;
 
 public class IntegerUtils {
-	
 	public static boolean isEmpty(Integer integer) throws Exception {
 		return integer == null;
 	}
@@ -11,7 +10,7 @@ public class IntegerUtils {
 	}
 	
 	public static boolean isNotEmpty(Integer integer) throws Exception {
-		return !IntegerUtils.isEmpty(integer);
+		return IntegerUtils.isEmpty(integer) == false;
 	}
 	
 	public static Integer defaultIfEmpty(Integer integer, Integer defaultInteger) throws Exception {

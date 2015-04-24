@@ -7,7 +7,6 @@ package kr.co.leem.utils.lang;
  * @author 임성천.
  */
 public class AgeUtils {
-
 	private AgeUtils() {
 		throw new AssertionError();
 	}
@@ -20,12 +19,12 @@ public class AgeUtils {
 	 * @return 나이값.(만)
 	 */
 	public static int getFullAge(String birthday, String baseDate) {
-		int age = 0;
-		age = Integer.parseInt(baseDate.substring(0, 4)) - Integer.parseInt(birthday.substring(0, 4));
+		int age = Integer.parseInt(baseDate.substring(0, 4)) - Integer.parseInt(birthday.substring(0, 4));
 		
 		if(age > 0) {
 			int birthDay = Integer.parseInt(birthday.substring(4,8));
-			int baseDay = Integer.parseInt(baseDate.substring(4,8));   		
+			int baseDay = Integer.parseInt(baseDate.substring(4,8));
+
 			if(birthDay > baseDay)
 				age--;
 		}

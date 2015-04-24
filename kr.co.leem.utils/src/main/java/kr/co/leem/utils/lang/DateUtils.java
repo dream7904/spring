@@ -29,44 +29,65 @@ import org.springframework.util.Assert;
  * @author 임성천.
  */
 public class DateUtils {
-	
-	/** 기본 날짜 패턴. */
+	/**
+	 * 기본 날짜 패턴.
+	 */
 	public static final String DATE_PATTERN_DASH = "yyyy-MM-dd";
 	
-	/** 기본 시간  패턴. */
+	/**
+	 * 기본 시간  패턴.
+	 */
 	public static final String TIME_PATTERN = "HH:mm";
 	
-	/** 날짜, 시간 패턴. */
+	/**
+	 * 날짜, 시간 패턴.
+	 */
 	public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 	
-	/** 날짜 HMS 패턴. */
+	/**
+	 * 날짜 HMS 패턴.
+	 */
 	public static final String DATE_HMS_PATTERN = "yyyyMMddHHmmss";
 	
-	/** Time stamp 패턴. */
+	/**
+	 * Time stamp 패턴.
+	 */
 	public static final String TIMESTAMP_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
 	
 	// Enterprise ================================================================
 	
-	/** 년 (yyyy) 패턴*/
+	/**
+	 * 년 (yyyy) 패턴
+	 */
 	public static final String YEAR_PATTERN = "yyyy";
 	
-	/** 월(MM) 패턴 */
+	/**
+	 * 월(MM) 패턴
+	 */
 	public static final String MONTH_PATTERN = "MM";
 	
-	/** 일(dd) pattern */
+	/**
+	 * 일(dd) pattern
+	 */
 	public static final String DAY_PATTERN = "dd";
 	
-	/** 날짜(yyyyMMdd) pattern */
+	/**
+	 * 날짜(yyyyMMdd) pattern
+	 */
 	public static final String DATE_PATTERN = "yyyyMMdd";
 	
-	/** 시간(HHmmss) 패턴 */
+	/**
+	 * 시간(HHmmss) 패턴
+	 */
 	public static final String TIME_HMS_PATTERN = "HHmmss";
 	
-	/** 시간(HH:mm:ss) 패턴*/
+	/**
+	 * 시간(HH:mm:ss) 패턴
+	 */
 	public static final String TIME_HMS_PATTERN_COLONE = "HH:mm:ss";
 	
 	/**
-	 * 평년인 경우, 매 월 일자 수 
+	 * 평년인 경우, 매 월 일자 수
 	 */
 	private static final int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
@@ -78,7 +99,7 @@ public class DateUtils {
 	/**
 	 * 현재 날짜를 반환. (yyyy-MM-dd HH:mm:ss)
 	 *
-	 * @return 현재 날짜. (yyyy-MM-dd HH:mm:ss) 
+	 * @return 현재 날짜. (yyyy-MM-dd HH:mm:ss)
 	 */
 	public static String getCurrentDateTimeString() {
 		return getCurrentDateTimeString(DATE_TIME_PATTERN);
@@ -118,6 +139,7 @@ public class DateUtils {
 	/**
 	 * 입력된 날짜에 대한 요일을 반환함.
 	 * 예) DateUtil.getDayOfWeek(&quot;2011-04-15&quot;) = &quot;일&quot;;
+	 *
 	 * @param str 날짜(yyyy-MM-dd)
 	 * @return 입력된 날짜에 대한 요일.
 	 */
@@ -127,10 +149,10 @@ public class DateUtils {
 	
 	/**
 	 * 입력된 날짜에 대한 요일을 반환함.
-	 *
+	 * <p/>
 	 * 예) DateUtil.getDayOfWeek(&quot;2011-04-15&quot;, true, Locale.US) = &quot;일&quot;;
 	 *
-	 * @param str 날짜(yyyy-MM-dd)
+	 * @param str          날짜(yyyy-MM-dd)
 	 * @param abbreviation 축약형 여부.
 	 * @param locale
 	 * @return 입력된 날짜에 대한 요일.
@@ -150,12 +172,12 @@ public class DateUtils {
 	 * 두 날짜 사이의 일수 차이를 반환.
 	 * cal1: 2005-08-15, cal2: 2005-09-14 => 30 days)
 	 *
-	 * @param startDate 시작일.
-	 * @param endDate 종료일.
+	 * @param fromDate 시작일.
+	 * @param toDate   종료일.
 	 * @return 두 날짜 사이의 일수 차이.
 	 */
-	public static int getDays(Calendar startDate, Calendar endDate) {
-		long min = getMinutes(startDate, endDate);
+	public static int getDays(Calendar fromDate, Calendar toDate) {
+		long min = getMinutes(fromDate, toDate);
 		
 		return (int) (min / (24 * 60));
 	}
@@ -163,71 +185,71 @@ public class DateUtils {
 	/**
 	 * 두 날짜 사이의 일수 차이를 반환.
 	 *
-	 * @param startDate 시작일.(yyyy-MM-dd)
-	 * @param endDate 종료일.(yyyy-MM-dd)
+	 * @param fromDate 시작일.(yyyy-MM-dd)
+	 * @param toDate   종료일.(yyyy-MM-dd)
 	 * @return 두 날짜 사이의 일수 차이.
 	 */
-	public static int getDays(String startDate, String endDate) {
-		return getDays(startDate, endDate, DATE_HMS_PATTERN);
+	public static int getDays(String fromDate, String toDate) {
+		return getDays(fromDate, toDate, DATE_HMS_PATTERN);
 	}
 	
 	/**
 	 * 두 날짜 사이의 일수 차이를 반환.
 	 *
-	 * @param startDate 시작일.
-	 * @param endDate 종료일.
-	 * @param pattern 날짜 형식.
+	 * @param fromDate 시작일.
+	 * @param toDate   종료일.
+	 * @param pattern   날짜 형식.
 	 * @return 두 날짜 사이의 일수 차이.
 	 */
-	public static int getDays(String startDate, String endDate, String pattern) {
+	public static int getDays(String fromDate, String toDate, String pattern) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern(pattern);
 		
-		DateTime startDateTime = fmt.parseDateTime(startDate);
-		DateTime endDateTime = fmt.parseDateTime(endDate);
+		DateTime fromDateTime = fmt.parseDateTime(fromDate);
+		DateTime toDateTime = fmt.parseDateTime(toDate);
 		
-		long startMillis = startDateTime.getMillis();
-		long endMillis = endDateTime.getMillis();
+		long fromMillis = fromDateTime.getMillis();
+		long toMillis = toDateTime.getMillis();
 		
-		int result = (int) (startMillis / (60 * 60 * 1000 * 24));
-		int result1 = (int) (endMillis / (60 * 60 * 1000 * 24));
+		int fromDays = (int) (fromMillis / (60 * 60 * 1000 * 24));
+		int toDays = (int) (toMillis / (60 * 60 * 1000 * 24));
 		
-		return result1 - result;
+		return toDays - fromDays;
 	}
 	
 	/**
 	 * 두 날짜가 같은지를 비교함.
 	 *
-	 * @param date1 기준날짜.
-	 * @param date2 문자열로 구성된 날짜. (yyyy-MM-dd)
+	 * @param sourceDate 기준날짜.
+	 * @param targetDate 문자열로 구성된 날짜. (yyyy-MM-dd)
 	 * @return 같으면 true, 다르면 false.
 	 */
-	public static boolean equals(Date date1, String date2) {
-		return equals(date1, date2, DATE_PATTERN_DASH);
+	public static boolean equals(Date sourceDate, String targetDate) {
+		return equals(sourceDate, targetDate, DATE_PATTERN_DASH);
 	}
 	
 	/**
 	 * 두 날짜가 같은지를 비교함.
 	 *
-	 * @param date1 기준날짜.
-	 * @param date2 문자열로 구성된 날짜. (yyyy-MM-dd)
-	 * @param date2pattern 날짜 패턴.
+	 * @param sourceDate        기준날짜.
+	 * @param targetDate        문자열로 구성된 날짜. (yyyy-MM-dd)
+	 * @param targetDatePattern 날짜 패턴.
 	 * @return 같으면 true, 다르면 false.
 	 */
-	public static boolean equals(Date date1, String date2, String date2pattern) {
-		Date date = string2Date(date2, date2pattern);
+	public static boolean equals(Date sourceDate, String targetDate, String targetDatePattern) {
+		Date date = string2Date(targetDate, targetDatePattern);
 
-		return equals(date1, date);
+		return equals(sourceDate, date);
 	}
 	
 	/**
 	 * 두 날짜가 같은지를 비교함.
 	 *
-	 * @param date1 기준날짜.
-	 * @param date2 비교할 날짜.
+	 * @param sourceDate 기준날짜.
+	 * @param targetDate 비교할 날짜.
 	 * @return 같으면 true, 다르면 false.
 	 */
-	public static boolean equals(Date date1, Date date2) {
-		if (date1.getTime() == date2.getTime()) {
+	public static boolean equals(Date sourceDate, Date targetDate) {
+		if (sourceDate.getTime() == targetDate.getTime()) {
 			return true;
 		}
 
@@ -237,37 +259,37 @@ public class DateUtils {
 	/**
 	 * 두 날짜의 크기 비교. (크거나 같은 경우.)
 	 *
-	 * @param date1 기준날짜.
-	 * @param date2 비교할 날짜. (yyyy-MM-dd)
+	 * @param sourceDate 기준날짜.
+	 * @param targetDate 비교할 날짜. (yyyy-MM-dd)
 	 * @return 기준날짜보가 비교할 날짜가 크면 true, 아니면 false.
 	 */
-	public static boolean greaterThan(Date date1, String date2) {
-		return greaterThan(date1, date2, DATE_PATTERN_DASH);
+	public static boolean greaterThan(Date sourceDate, String targetDate) {
+		return greaterThan(sourceDate, targetDate, DATE_PATTERN_DASH);
 	}
 	
 	/**
 	 * 두 날짜의 크기 비교. (크거나 같은 경우.)
 	 *
-	 * @param date1 기준날짜.
-	 * @param date2 비교할 날짜. (yyyy-MM-dd)
-	 * @param date2pattern 비교날짜의 날짜 패턴.
+	 * @param sourceDate        기준날짜.
+	 * @param targetDate        비교할 날짜. (yyyy-MM-dd)
+	 * @param targetDatePattern 비교날짜의 날짜 패턴.
 	 * @return 기준날짜보가 비교할 날짜가 크면 true, 아니면 false.
 	 */
-	public static boolean greaterThan(Date date1, String date2, String date2pattern) {
-		Date date = string2Date(date2, date2pattern);
+	public static boolean greaterThan(Date sourceDate, String targetDate, String targetDatePattern) {
+		Date date = string2Date(targetDate, targetDatePattern);
 
-		return greaterThan(date1, date);
+		return greaterThan(sourceDate, date);
 	}
 	
 	/**
 	 * 두 날짜의 크기 비교. (크거나 같은 경우.)
 	 *
-	 * @param date1 기준날짜.
-	 * @param date2 비교할 날짜.
+	 * @param sourceDate 기준날짜.
+	 * @param targetDate 비교할 날짜.
 	 * @return 기준날짜보가 비교할 날짜가 크면 true, 아니면 false.
 	 */
-	public static boolean greaterThan(Date date1, Date date2) {
-		if (date1.getTime() > date2.getTime()) {
+	public static boolean greaterThan(Date sourceDate, Date targetDate) {
+		if (sourceDate.getTime() > targetDate.getTime()) {
 			return true;
 		}
 
@@ -277,12 +299,12 @@ public class DateUtils {
 	/**
 	 * 두 날짜의 크기 비교. (크거나 같은 경우.)
 	 *
-	 * @param timestamp1 기준날짜.
-	 * @param timestamp2 비교할 날짜.
+	 * @param sourceTimestamp 기준날짜.
+	 * @param targetTimestamp 비교할 날짜.
 	 * @return 기준날짜보가 비교할 날짜가 크면 true, 아니면 false.
 	 */
-	public static boolean greaterThan(Timestamp timestamp1, Timestamp timestamp2) {
-		if (timestamp1.getTime() > timestamp2.getTime()) {
+	public static boolean greaterThan(Timestamp sourceTimestamp, Timestamp targetTimestamp) {
+		if (sourceTimestamp.getTime() > targetTimestamp.getTime()) {
 			return true;
 		}
 
@@ -292,37 +314,37 @@ public class DateUtils {
 	/**
 	 * 두 날짜의 크기 비교. (크거나 같은 경우.)
 	 *
-	 * @param timestamp1 기준날짜.
-	 * @param timestamp2 비교할 날짜. (yyyy-MM-dd)
+	 * @param sourceTimestamp 기준날짜.
+	 * @param targetTimestamp 비교할 날짜. (yyyy-MM-dd)
 	 * @return 기준날짜보가 비교할 날짜가 크면 true, 아니면 false.
 	 */
-	public static boolean greaterThan(Timestamp timestamp1, String timestamp2) {
-		return greaterThan(timestamp1, timestamp2, TIMESTAMP_PATTERN);
+	public static boolean greaterThan(Timestamp sourceTimestamp, String targetTimestamp) {
+		return greaterThan(sourceTimestamp, targetTimestamp, TIMESTAMP_PATTERN);
 	}
 	
 	/**
 	 * 두 날짜의 크기 비교. (크거나 같은 경우.)
 	 *
-	 * @param timestamp1 기준날짜.
-	 * @param timestamp2 비교할 날짜. (yyyy-MM-dd)
-	 * @param timestamp2 날짜 패턴
- 	 * @return 기준날짜보가 비교할 날짜가 크면 true, 아니면 false.
+	 * @param sourceTimestamp 기준날짜.
+	 * @param targetTimestamp 비교할 날짜. (yyyy-MM-dd)
+	 * @param targetTimestamp 날짜 패턴
+	 * @return 기준날짜보가 비교할 날짜가 크면 true, 아니면 false.
 	 */
-	public static boolean greaterThan(Timestamp timestamp1, String timestamp2, String timestamp2pattern) {
-		Timestamp date = string2Timestamp(timestamp2, timestamp2pattern);
+	public static boolean greaterThan(Timestamp sourceTimestamp, String targetTimestamp, String targetTimestampPattern) {
+		Timestamp date = string2Timestamp(targetTimestamp, targetTimestampPattern);
 
-		return greaterThan(timestamp1, date);
+		return greaterThan(sourceTimestamp, date);
 	}
 	
 	/**
 	 * 종료일 반환.
 	 *
-	 * @param startDay 시작일 (yyyy-MM-dd)
+	 * @param fromDay     시작일 (yyyy-MM-dd)
 	 * @param intervalDays 날짜간격.
 	 * @return 특정 숫자를 더한 날짜. (yyyy-MM-dd)
 	 */
-	public static String getEndDate(String startDay, int intervalDays) {
-		StringTokenizer st = new StringTokenizer(startDay, "-");
+	public static String getEndDate(String fromDay, int intervalDays) {
+		StringTokenizer st = new StringTokenizer(fromDay, "-");
 
 		int year = 0;
 		int mon = 0;
@@ -385,9 +407,9 @@ public class DateUtils {
 	}
 	
 	/**
-	 * 일수를 더한 날짜 반환. 
+	 * 일수를 더한 날짜 반환.
 	 *
-	 * @param str 시작일. (yyyy-MM-dd)
+	 * @param str  시작일. (yyyy-MM-dd)
 	 * @param days 더할 일 수.
 	 * @return 특정 숫자를 더한 날짜.
 	 */
@@ -405,8 +427,8 @@ public class DateUtils {
 	
 	/**
 	 * 월수를 더한 날짜 계산.
-	 * 
-	 * @param str 기준날짜. (yyyy-MM-dd)
+	 *
+	 * @param str    기준날짜. (yyyy-MM-dd)
 	 * @param months 더할 월수 .
 	 * @return 특정 월를 더한 날짜.
 	 */
@@ -425,7 +447,7 @@ public class DateUtils {
 	/**
 	 * 년수를 더한 날짜 계산.
 	 *
-	 * @param str 기준날짜 (yyyy-MM-dd)
+	 * @param str   기준날짜 (yyyy-MM-dd)
 	 * @param years 더할 년수.
 	 * @return String calculated date
 	 */
@@ -443,11 +465,11 @@ public class DateUtils {
 	
 	/**
 	 * 년, 월, 일을 더한 날짜 계산.
-	 * 
-	 * @param str 기준 날짜. (yyyy-MM-dd)
-	 * @param years 더할 년수.
+	 *
+	 * @param str    기준 날짜. (yyyy-MM-dd)
+	 * @param years  더할 년수.
 	 * @param months 더할 월수.
-	 * @param days 더할 일수.
+	 * @param days   더할 일수.
 	 * @return 계산된 날짜.
 	 */
 	public static String addYearMonthDay(String str, int years, int months, int days) {
@@ -467,7 +489,7 @@ public class DateUtils {
 	/**
 	 * 입력된 날짜값에 대한 첫 날짜를 반환.
 	 * 예) 2012-04-15 => 2012-04-01
-	 * 
+	 *
 	 * @param str 기준날짜 (yyyy-MM-dd)
 	 * @return 날짜값에 대한 첫 날짜.
 	 */
@@ -480,7 +502,7 @@ public class DateUtils {
 	}
 	
 	/**
-	 * 날짜값에 대한 마지막 날짜를 반환. 
+	 * 날짜값에 대한 마지막 날짜를 반환.
 	 *
 	 * @param str 기준날짜 (yyyy-MM-dd)
 	 * @return 날짜값에 대한 마지막 날짜.
@@ -531,7 +553,6 @@ public class DateUtils {
 	 * 입력된 값이 날짜 형식인지 체크.
 	 *
 	 * @param str 날짜값. (yyyy-MM-dd)
-	 * @return
 	 * @return 날짜패턴인 경우 true.
 	 */
 	public static boolean isDate(String str) {
@@ -541,7 +562,7 @@ public class DateUtils {
 	/**
 	 * 입력된 값이 날짜 형식인지 체크.
 	 *
-	 * @param str 날짜값.
+	 * @param str     날짜값.
 	 * @param pattern 날짜 패턴.
 	 * @return 날짜패턴인 경우 true.
 	 */
@@ -570,7 +591,7 @@ public class DateUtils {
 	/**
 	 * 입력된 값이 시간 형식인지 체크.
 	 *
-	 * @param str 시간값.
+	 * @param str     시간값.
 	 * @param pattern 시간 패턴.
 	 * @return 시간패턴인 경우 true.
 	 */
@@ -599,7 +620,7 @@ public class DateUtils {
 	/**
 	 * 문자열을 날짜(<code>java.util.Date</code>)형식으로 변환.
 	 *
-	 * @param str 날짜값.
+	 * @param str     날짜값.
 	 * @param pattern 날짜패턴.
 	 * @return <code>java.util.Date</code>
 	 */
@@ -621,7 +642,7 @@ public class DateUtils {
 	/**
 	 * 날짜값을 문자열로 변환.
 	 *
-	 * @param date 날짜값.
+	 * @param date    날짜값.
 	 * @param pattern 날짜 패턴.
 	 * @return 변환된 날짜.
 	 */
@@ -633,14 +654,14 @@ public class DateUtils {
 	
 	/**
 	 * 날짜 형태의 문자열의 날짜 패턴 변환.
-	 *
+	 * <p/>
 	 * <pre>
 	 * DateUtil.string2String("20120612", "yyyyMMdd", "yyyy-MM-dd") = "2012-06-12"
 	 * DateUtil.string2String("2012.06.12", "yyyy.MM.dd", "yyyy/MM/dd") = "2012/06/12"
 	 * </pre>
 	 *
-	 * @param str string : 날짜값.
-	 * @param basePattern : 입력된 날짜 값의 패턴.
+	 * @param str           string : 날짜값.
+	 * @param basePattern   : 입력된 날짜 값의 패턴.
 	 * @param wantedPattern : 변환하고자 하는 날짜값의 패턴.
 	 */
 	public static String string2String(String str, String basePattern, String wantedPattern) {
@@ -691,7 +712,7 @@ public class DateUtils {
 	/**
 	 * 문자열을 날짜(<code>java.sql.Date</code>)형식으로 변환.
 	 *
-	 * @param str str 날짜값.
+	 * @param str     str 날짜값.
 	 * @param pattern 변환하고자 하는 날짜패턴.
 	 * @return <code>java.sql.Date</code>
 	 */
@@ -714,7 +735,7 @@ public class DateUtils {
 	/**
 	 * 문자열을 날짜 (<code>java.sq.Timestamp</code>) 형식으로 변환.
 	 *
-	 * @param str 날짜값.
+	 * @param str     날짜값.
 	 * @param pattern 변환하고자 하는 날짜패턴.
 	 * @return <code>java.sql.Timestamp</code>
 	 */
@@ -737,7 +758,7 @@ public class DateUtils {
 	/**
 	 * 날짜(<code>java.sq.Timestamp</code>)값을 문자열(<code>String</code>)형식으로 변경.
 	 *
-	 * @param date 날짜값.
+	 * @param date    날짜값.
 	 * @param pattern 변환하고자 하는 날짜 패턴.
 	 * @return 변환된 날짜형식의 문자열.
 	 */
@@ -860,7 +881,7 @@ public class DateUtils {
 	 * 시작일과 종료일 사이의 날짜를 배열로 반환함.
 	 *
 	 * @param startDay 시작일. (yyyy-MM-dd)
-	 * @param endDay 종료일. (yyyy-MM-dd)
+	 * @param endDay   종료일. (yyyy-MM-dd)
 	 * @return 시작일과 종료일 사이의 날짜 배열값.
 	 */
 	public static String[] getDates(String startDay, String endDay) {
@@ -870,20 +891,20 @@ public class DateUtils {
 	/**
 	 * 시작일과 종료일 사이의 날짜를 배열로 반환함.
 	 *
-	 * @param startDay 시작일
-	 * @param endDay end day 종료일.
-	 * @param pattern 날짜 패턴.
+	 * @param fromDay 시작일
+	 * @param toDay   end day 종료일.
+	 * @param pattern  날짜 패턴.
 	 * @return 시작일과 종료일 사이의 날짜 배열값.
 	 */
-	public static String[] getDates(String startDay, String endDay, String pattern) {
+	public static String[] getDates(String fromDay, String toDay, String pattern) {
 		List<String> result = new ArrayList<String>();
-		result.add(startDay);
+		result.add(fromDay);
 		
 		Calendar cal = getCalendar();
-		cal.setTime(string2Date(startDay, pattern));
+		cal.setTime(string2Date(fromDay, pattern));
 		String nextDay = date2String(cal.getTime(), pattern);
 		
-		while (nextDay.equals(endDay) == false) {
+		while (nextDay.equals(toDay) == false) {
 			cal.add(Calendar.DATE, 1);
 			nextDay = date2String(cal.getTime(), pattern);
 			result.add(nextDay);
@@ -894,7 +915,7 @@ public class DateUtils {
 	
 	/**
 	 * 현재 날짜를 가져옴. (yyyy-MM-dd)
-	 * 
+	 *
 	 * @return 현재날짜. (yyyy-MM-dd)
 	 */
 	public static String getCurrentDateString() {
@@ -903,7 +924,7 @@ public class DateUtils {
 	
 	/**
 	 * 현재 날짜를 반환함.
-	 * 
+	 *
 	 * @param pattern 변환하고자 하는 날짜 패턴.
 	 * @return 현재날짜.
 	 */
@@ -915,7 +936,7 @@ public class DateUtils {
 	
 	/**
 	 * 현재날짜를 {@link java.sql.Date} 형식으로 반환함.
-	 * 
+	 *
 	 * @return 현재날짜.
 	 */
 	public static java.sql.Date getCurrentDate() {
@@ -924,7 +945,7 @@ public class DateUtils {
 	
 	/**
 	 * 현재시간을 {@link java.sql.Time} 형식으로 반환함.
-	 * 
+	 *
 	 * @return 현재날짜.
 	 */
 	public static Time getCurrentTime() {
@@ -933,7 +954,7 @@ public class DateUtils {
 	
 	/**
 	 * 현재 시간을 반환함.
-	 * 
+	 *
 	 * @return 현재시간.
 	 */
 	public static String getCurrentTimeString() {
@@ -942,8 +963,8 @@ public class DateUtils {
 	
 	/**
 	 * 현재날짜를 {@link java.sql.Timestamp} 형식으로 반환함.
-	 * 
-	 * @return 현재날짜. 
+	 *
+	 * @return 현재날짜.
 	 */
 	public static Timestamp getCurrentTimestamp() {
 		Timestamp timestamp = new Timestamp(new Date().getTime());
@@ -953,7 +974,7 @@ public class DateUtils {
 	
 	/**
 	 * 현재날짜({@link java.sql.Timestamp})를 문자열로 반환.
-	 * 
+	 *
 	 * @return 현재날짜.
 	 */
 	public static String getCurrentTimestampString() {
@@ -962,15 +983,15 @@ public class DateUtils {
 	
 	/**
 	 * 날짜의 Year값을 입력된 값으로 교체하여 반환함.
-	 * 
+	 *
 	 * @param date 날짜값.
 	 * @param year 교체할 Year값.
-	 * @return 교체된 날짜값. 
+	 * @return 교체된 날짜값.
 	 */
 	public static Date replaceYear(Date date, int year) {
 		Assert.notNull(date);
 		
-		Assert.isTrue(("" + year).length() <= 4, year +" 교체랑 Year값은 4자릿수를 넘을 수 없습니다."); 
+		Assert.isTrue(("" + year).length() <= 4, year + " 교체랑 Year값은 4자릿수를 넘을 수 없습니다.");
 		
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -980,17 +1001,17 @@ public class DateUtils {
 	}
 	
 	/**
-	 * 입력된 날짜 값으로  Date객체를 생성하여 리턴함. 
-	 * 
-	 * @param year year값.
-	 * @param month	month값.
-	 * @param day day값.
-	 * @param hourOfDay	hour값.
-	 * @param minute minute값.
-	 * @param second second값.
+	 * 입력된 날짜 값으로  Date객체를 생성하여 리턴함.
+	 *
+	 * @param year      year값.
+	 * @param month     month값.
+	 * @param day       day값.
+	 * @param hourOfDay hour값.
+	 * @param minute    minute값.
+	 * @param second    second값.
 	 * @return 생성된 날짜값({@link java.util.Date})
 	 */
-	public static Date getDate(int year, int month, int day, int hourOfDay, int minute, int second){
+	public static Date getDate(int year, int month, int day, int hourOfDay, int minute, int second) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(year, month - 1, day, hourOfDay, minute, second);
 		
@@ -999,11 +1020,11 @@ public class DateUtils {
 	
 	/**
 	 * 입력된 날짜의 해당 월의 마지막 일자를 리턴함.
-	 * 
+	 *
 	 * @param inputDate 날짜값. ( yyyy-MM-dd )
 	 * @return 해당 월의 마지막 일자.
 	 */
-	public static int getLastDayOfMonth(String inputDate){
+	public static int getLastDayOfMonth(String inputDate) {
 		String examYmd = StringUtils.left(inputDate.trim(), 8) + "01";
 		Assert.isTrue(isDate(examYmd), inputDate + "입력된 날짜의 형식은 반드시 'yyyy-MM-dd' 형식이어야 합니다.");
 		
@@ -1012,40 +1033,40 @@ public class DateUtils {
 	
 	/**
 	 * 입력된 날짜값이 해당월의 마지막일인지를 반환함.
-	 * 
+	 *
 	 * @param inputDate 날짜값.(yyyy-MM-dd)
-	 * @return 해당월의 마지막일인 경우 true. 
+	 * @return 해당월의 마지막일인 경우 true.
 	 */
-	public static boolean isLastDateOfMonth(String inputDate){
+	public static boolean isLastDateOfMonth(String inputDate) {
 		String examYmd = StringUtils.left(inputDate.trim(), 8) + "01";
 		int inputDay = Integer.parseInt(StringUtils.right(inputDate.trim(), 2));
 		
 		int lastDay = getLastDayOfMonthInt(examYmd);
 		
-		if(inputDay == lastDay){
+		if (inputDay == lastDay) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
 	
 	/**
 	 * 입력된 날짜값이 해당월의 마지막 일값을 반환함.
-	 * 
+	 *
 	 * @param inputDate 날짜값.(yyyy-MM-dd)
 	 * @return 입력된 날짜값이 해당월의 마지막 일값.
 	 */
-	private static int getLastDayOfMonthInt(String inputDate){
+	private static int getLastDayOfMonthInt(String inputDate) {
 		Assert.notNull(inputDate);
-		Assert.isTrue(isDate(inputDate), inputDate  + " must be in 'yyyy-MM-dd' pattern");
+		Assert.isTrue(isDate(inputDate), inputDate + " must be in 'yyyy-MM-dd' pattern");
 
 		int month = Integer.parseInt(inputDate.substring(5, 7));
 		int lastDayOfMonthValue = 0;
 
-		if(isLeapYear(inputDate)){
-			lastDayOfMonthValue = lastDayOfMonthForLeapYear[month-1];
-		} else{
-			lastDayOfMonthValue = lastDayOfMonth[month-1];
+		if (isLeapYear(inputDate)) {
+			lastDayOfMonthValue = lastDayOfMonthForLeapYear[month - 1];
+		} else {
+			lastDayOfMonthValue = lastDayOfMonth[month - 1];
 		}
 		return lastDayOfMonthValue;
 		
@@ -1053,8 +1074,8 @@ public class DateUtils {
 	
 	/**
 	 * 윤년 여부를 반환함.
-	 * 
-	 * @param  inputDate 날짜값. (yyyy-MM-dd)
+	 *
+	 * @param inputDate 날짜값. (yyyy-MM-dd)
 	 * @return 윤년이면 true, 아니면 false.
 	 */
 	public static boolean isLeapYear(String inputDate) {
@@ -1066,13 +1087,13 @@ public class DateUtils {
 	
 	/**
 	 * 입력된 년도로 윤년 여부를 반환함.
-	 * 
+	 *
 	 * @param year 년도값.
 	 * @return true if it is a leap year
 	 */
-	public static boolean isLeapYear(int year){
+	public static boolean isLeapYear(int year) {
 		Assert.isTrue(year > 0, year + " 반드시 정수형이어야 합니다.");
 
-		return (( year % 4 == 0 && year % 100 != 0 ) || year % 400 == 0 ) ? true : false;
+		return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) ? true : false;
 	}
 }

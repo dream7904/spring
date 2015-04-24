@@ -1,9 +1,7 @@
 package kr.co.leem.configs;
 
 import kr.co.leem.libs.security.services.UserDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -24,11 +22,9 @@ import java.util.List;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@ComponentScan(basePackages = "kr.co.leem")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean(name = "authenticationManager")
 	public AuthenticationManager authenticationManagerBean() throws Exception {
-
 		return this.authenticationManager();
 	}
 

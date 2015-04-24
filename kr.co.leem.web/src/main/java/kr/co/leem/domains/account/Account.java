@@ -36,7 +36,7 @@ public class Account {
 	}
 
 	@Basic
-	@Column(name = "accountId", length = 32)
+	@Column(name = "accountId", length = 32, unique = true)
 	public String getAccountId() {
 		return accountId;
 	}

@@ -8,5 +8,8 @@ public enum ResultType {
 	current,
 	record,
 	resultCode,
-	exception
+	exception,
+	userId,
+	mainData,
+	subData
 }

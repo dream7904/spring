@@ -18,7 +18,6 @@ import java.util.Collection;
  */
 @Service
 public class UserDetailService implements org.springframework.security.core.userdetails.UserDetailsService {
-	@Autowired private PasswordEncoder passwordEncoder;
 	@Autowired private AccountRepository accountRepository;
 	
 	@Override

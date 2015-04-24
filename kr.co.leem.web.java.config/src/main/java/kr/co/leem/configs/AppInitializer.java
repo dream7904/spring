@@ -17,7 +17,7 @@ import javax.servlet.ServletRegistration;
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
 	protected String[] getServletMappings() {
-		return new String[]{"/"};
+		return new String[] {"/"};
 	}
 
 	@Override
@@ -45,4 +45,3 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new Filter[] {characterEncodingFilter, securityFilterChain, multipartFilter, hiddenHttpMethodFilter};
 	}
 }
-

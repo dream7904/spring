@@ -42,6 +42,7 @@ public class ListUtils extends org.apache.commons.collections.ListUtils {
 	
 	/**
 	 * 대상이 원본을 포함하고 있지 않으면, 목록에 저장
+	 *
 	 * @param sourceList
 	 * @param targetList
 	 * @return
@@ -51,11 +52,13 @@ public class ListUtils extends org.apache.commons.collections.ListUtils {
 			List<Integer> sourceList,
 			List<Integer> targetList) throws Exception {
 		List<Integer> resultList = new ArrayList<Integer>();
+
 		for (int i = 0; i < sourceList.size(); i++) {
 			if (!targetList.contains(sourceList.get(i))) {
 				resultList.add(sourceList.get(i));
 			}
 		}
+
 		return resultList;
 	}
 	
@@ -63,16 +66,19 @@ public class ListUtils extends org.apache.commons.collections.ListUtils {
 			List<Integer> sourceList,
 			List<Integer> targetList) throws Exception {
 		List<Integer> resultList = new ArrayList<Integer>();
+
 		for (int i = 0; i < sourceList.size(); i++) {
 			if (targetList.contains(sourceList.get(i))) {
 				resultList.add(sourceList.get(i));
 			}
 		}
+
 		return resultList;
 	}
 	
 	/**
 	 * 대상이 원본을 포함하고 있지 않으면, 목록에 저장
+	 *
 	 * @param sourceList
 	 * @param targetList
 	 * @return
@@ -82,6 +88,7 @@ public class ListUtils extends org.apache.commons.collections.ListUtils {
 			List<String> sourceList,
 			List<String> targetList) throws Exception {
 		List<String> resultList = new ArrayList<String>();
+
 		for (int i = 0; i < sourceList.size(); i++) {
 			if (!targetList.contains(sourceList.get(i))) {
 				resultList.add(sourceList.get(i));
@@ -94,6 +101,7 @@ public class ListUtils extends org.apache.commons.collections.ListUtils {
 			List<String> sourceList,
 			List<String> targetList) throws Exception {
 		List<String> resultList = new ArrayList<String>();
+
 		for (int i = 0; i < sourceList.size(); i++) {
 			if (targetList.contains(sourceList.get(i))) {
 				resultList.add(sourceList.get(i));
@@ -101,9 +109,9 @@ public class ListUtils extends org.apache.commons.collections.ListUtils {
 		}
 		return resultList;
 	}
-		
+
 	public static <T> int getLengthIfNull(List<T> objArr) {
-		if(objArr != null) {
+		if (objArr != null) {
 			return objArr.size();
 		} else {
 			return 0;
@@ -111,32 +119,40 @@ public class ListUtils extends org.apache.commons.collections.ListUtils {
 	}
 	
 	public static <T> int getLengthIfNull(Set<T> objArr) {
-		if(objArr != null) {
+		if (objArr != null) {
 			return objArr.size();
 		} else {
 			return 0;
 		}
 	}
+
 	public static <T> List<T> setToList(Set<T> set) {
 		if (getLengthIfNull(set) > 0) {
-			List<T>list = new ArrayList<T>();
+			List<T> list = new ArrayList<T>();
 			Iterator<T> it = set.iterator();
+
 			while (it.hasNext()) {
 				list.add(it.next());
 			}
+
 			return list;
 		}
+
 		return null;
 	}
+
 	public static <T> Set<T> listToSet(List<T> list) {
 		if (getLengthIfNull(list) > 0) {
-			Set<T>set = new HashSet<T>();
+			Set<T> set = new HashSet<T>();
 			Iterator<T> it = list.iterator();
+
 			while (it.hasNext()) {
 				set.add(it.next());
 			}
+
 			return set;
 		}
+
 		return null;
 	}
 }

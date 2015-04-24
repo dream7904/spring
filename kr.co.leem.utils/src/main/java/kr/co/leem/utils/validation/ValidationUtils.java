@@ -11,7 +11,6 @@ import kr.co.leem.utils.lang.StringUtils;
  * @author 임성천.
  */
 public class ValidationUtils {
-
 	private ValidationUtils() {
 		throw new AssertionError();
 	}

@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
  * @author 임 성천.
  */
 public class DigestUtils {
-	
 	private DigestUtils() {
 		throw new AssertionError();
 	}

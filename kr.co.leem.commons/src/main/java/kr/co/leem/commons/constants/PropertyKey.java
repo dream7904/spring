@@ -6,7 +6,6 @@ package kr.co.leem.commons.constants;
  *
  */
 public class PropertyKey {
-	
 	public static class SnsType {
 		public final static String TWITTER = "tw.sns.type";
 		public final static String FACEBOOK = "fb.sns.type";
@@ -51,5 +50,4 @@ public class PropertyKey {
 		public final static String SMTP_PASSWORD = "mail.smtp.password";
 		public final static String SENDER = "mail.sender";
 	}
-	
 }

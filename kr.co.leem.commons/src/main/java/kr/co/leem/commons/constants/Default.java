@@ -5,7 +5,6 @@ package kr.co.leem.commons.constants;
  * @author Dream7904
  */
 public final class Default {
-	
 	/**
 	 * MessageSource 
 	 */
