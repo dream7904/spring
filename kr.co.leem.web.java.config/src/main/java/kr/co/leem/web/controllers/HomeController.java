@@ -1,7 +1,5 @@
 package kr.co.leem.web.controllers;
 
-import kr.co.leem.web.services.DefaultService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
