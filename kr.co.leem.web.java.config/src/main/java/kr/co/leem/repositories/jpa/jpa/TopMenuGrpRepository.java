@@ -1,4 +1,4 @@
-package kr.co.leem.repositories.jpa;
+package kr.co.leem.repositories.jpa.jpa;
 
 import kr.co.leem.domains.menu.TopMenuGrp;
 import org.springframework.data.domain.Page;

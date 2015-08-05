@@ -1,4 +1,4 @@
-package kr.co.leem.repositories.jpa.criterias;
+package kr.co.leem.repositories.jpa.jpa.criterias;
 
 import kr.co.leem.domains.menu.LowMenu;
 import kr.co.leem.domains.menu.MenuReq;

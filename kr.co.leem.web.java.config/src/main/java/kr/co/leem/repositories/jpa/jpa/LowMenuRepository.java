@@ -1,4 +1,4 @@
-package kr.co.leem.repositories.jpa;
+package kr.co.leem.repositories.jpa.jpa;
 
 import kr.co.leem.domains.menu.LowMenu;
 import org.springframework.data.domain.Page;

@@ -1,7 +1,7 @@
 package kr.co.leem.web.services;
 
 import kr.co.leem.domains.account.Account;
-import kr.co.leem.repositories.jpa.AccountRepository;
+import kr.co.leem.repositories.jpa.jpa.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

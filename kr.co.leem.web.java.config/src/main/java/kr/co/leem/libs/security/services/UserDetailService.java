@@ -1,7 +1,7 @@
 package kr.co.leem.libs.security.services;
 
 import kr.co.leem.domains.account.Account;
-import kr.co.leem.repositories.jpa.AccountRepository;
+import kr.co.leem.repositories.jpa.jpa.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

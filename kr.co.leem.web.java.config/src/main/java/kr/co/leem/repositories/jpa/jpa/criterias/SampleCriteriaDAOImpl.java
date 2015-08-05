@@ -1,4 +1,4 @@
-package kr.co.leem.repositories.jpa.criterias;
+package kr.co.leem.repositories.jpa.jpa.criterias;
 
 import kr.co.leem.commons.constants.ResultType;
 import kr.co.leem.domains.account.Account;

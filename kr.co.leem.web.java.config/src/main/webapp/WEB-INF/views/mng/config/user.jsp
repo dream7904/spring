@@ -12,7 +12,7 @@
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Tables</h1>
+			<h1 class="page-header">기본정보 관리</h1>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
@@ -21,47 +21,11 @@
 		<div class="col-lg-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					사용자 관리
+					프로젝트
 				</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
-					<div class="dataTable_wrapper">
-						<table id="usersGrid" class="table table-condensed table-hover table-striped">
-							<thead>
-							<tr>
-								<th data-column-id="accountId" data-identifier="true" data-align="center" data-header-align="center"
-								    data-sortable="false">계정
-								</th>
-								<th data-column-id="name" data-align="center" data-header-align="center"
-								    data-sortable="false">이름
-								</th>
-
-								<th data-column-id="telNum" data-align="center" data-header-align="center"
-								    data-sortable="false">전화번호
-								</th>
-
-								<th data-column-id="hpNum" data-align="center" data-header-align="center"
-								    data-sortable="false">핸드폰번호
-								</th>
-
-								<th data-column-id="address" data-align="center" data-header-align="center"
-								    data-sortable="false">주소
-								</th>
-
-								<th data-column-id="regDate" data-formatter="date" data-align="center" data-header-align="center"
-								    data-sortable="false">주소
-								</th>
-								<%--<th data-column-id="userGrpNm" data-align="center" data-formatter="userGrpNm" data-header-align="center"
-								    data-sortable="false">권한
-								</th>--%>
-
-								<th data-column-id="commands" data-formatter="commands" data-align="center" data-header-align="center"
-								    data-sortable="false">Commands
-								</th>
-							</tr>
-							</thead>
-						</table>
-					</div>
+					
 				</div>
 				<!-- /.panel-body -->
 			</div>
